@@ -1,0 +1,14 @@
+- unless @version.picture.url.empty?
+  = image_tag @version.picture.url(:medium)
+
+%table#comparison
+  %tr
+    %td
+      %pre#old= @version.previous_version.try(:to_comparable_text)
+    %td
+      %pre#new= @version.to_comparable_text
+
+#content
+
+%script{ :type => 'text/javascript' }
+  show_diff();

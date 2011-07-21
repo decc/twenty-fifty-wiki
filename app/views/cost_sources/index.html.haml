@@ -1,0 +1,29 @@
+%h1 Listing cost_sources
+
+%table
+  %tr
+    %th Label
+    %th Content
+    %th User
+    %th Deleted
+    %th Signed off by
+    %th Signed off at
+    %th
+    %th
+    %th
+
+  - @cost_sources.each do |cost_source|
+    %tr
+      %td= cost_source.label
+      %td= cost_source.content
+      %td= cost_source.user_id
+      %td= cost_source.deleted
+      %td= cost_source.signed_off_by_id
+      %td= cost_source.signed_off_at
+      %td= link_to 'Show', cost_source
+      %td= link_to 'Edit', edit_cost_source_path(cost_source)
+      %td= link_to 'Destroy', cost_source, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Cost source', new_cost_source_path

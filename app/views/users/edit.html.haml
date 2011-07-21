@@ -1,0 +1,31 @@
+#centre
+  = form_for(@user, :html => { :multipart => true } ) do |f|
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@user.errors.count, "error")
+          prohibited this page from being saved:
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+    .field
+      = f.label :title, "Name"
+      %br/
+      = f.text_field :title
+    .field
+      = f.label :picture
+      %br/
+      = image_tag @user.picture.url(:thumb)
+      %br/
+      = f.file_field :picture
+    .field
+      = f.label :content, 'Description of person, their experience and their interests'
+      %br/
+      = f.text_area :content
+    .field
+      = f.check_box :signed_off_toggle    
+      = f.label :signed_off_toggle, "Tick if you have checked this content and are willing to sign it off as correct"      
+    .actions
+      = f.hidden_field :previous_version_id    
+      = f.submit
+      or #{link_to 'Cancel', @user}

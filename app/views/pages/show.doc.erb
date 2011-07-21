@@ -1,0 +1,4 @@
+<% @html = @page.to_html  %>
+<% @pictures = extract_pictures_from(@html) %>
+<%= raw(Mail::Encodings::QuotedPrintable.encode("<html><body>#{@html}</body></html>")) %>
+<%= @pictures %>

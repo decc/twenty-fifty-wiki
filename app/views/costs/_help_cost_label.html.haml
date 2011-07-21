@@ -1,0 +1,11 @@
+#help.cost_label
+  %h2 Label for tables and charts
+  
+  %p If required, please give your data point a precise, meaningful, short, label for use in tables and charts (e.g., BWR).
+  %p You don't need to add information such as the source (e.g., Markal), category (e.g., Nuclear) or year of validity (e.g., 2050). These will automatically be be added to the label where required.
+  
+  %p Examples include:
+  %ul
+    - Cost.order('updated_at DESC').limit(10).all.each do |cost|
+      - next if cost.label.blank?
+      %li= update_label_to cost.label

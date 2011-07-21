@@ -1,0 +1,64 @@
+%script= render 'form_javascript.js'
+#centre.cost_form
+  = form_for @cost_category do |f|
+    -if @cost_category.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@cost_category.errors.count, "error")} prohibited this from being saved:"
+        %ul
+          - @cost_category.errors.full_messages.each do |msg|
+            %li= msg
+    %table
+      %tr
+        %td.label= f.label :label,"Label"
+        %td.field= f.text_field :label
+      %tr.divider
+        %td &nbsp;
+      %tr#type_of_cost.tall
+        %td.label Type of cost
+        %td.field
+          = f.radio_button :cost_type, :fuel
+          A fuel, such as oil, gas, or imported biocrops
+          %br/
+          = f.radio_button :cost_type, :technology
+          A technology, such as a nuclear power station, car, or insulation
+
+      %tr.divider
+        %td &nbsp;
+      %tr.fuel_cost        
+        %td.label= f.label :default_fuel_unit, "Default fuel cost unit"
+        %td.field= f.text_field :default_fuel_unit
+      %tr.fuel_cost
+        %td.label= f.label :default_valid_for_quantity_of_fuel_unit, "Default fuel limit unit"
+        %td.field= f.text_field :default_valid_for_quantity_of_fuel_unit
+      %tr.technology_cost        
+        %td.label= f.label :default_capital_unit, "Default capital cost unit"
+        %td.field= f.text_field :default_capital_unit
+      %tr.technology_cost        
+        %td.label= f.label :default_operating_unit, "Default operating cost unit"
+        %td.field= f.text_field :default_operating_unit
+      %tr.divider
+        %td &nbsp;
+      %tr.tall
+        %td.label= f.label :content, "Notes on what is included in this category"
+        %td.field= f.text_area :content
+      %tr.tall
+        %td.label= f.label :cost_boilerplate, "Boilerplate text for new costs in this category"
+        %td.field= f.text_area :cost_boilerplate        
+      %tr.actions
+        %td
+        %td
+          = f.hidden_field :previous_version_id    
+          = f.submit
+          or #{link_to 'Cancel', :back}
+          
+#right
+  #help.default
+    %h2 Help
+
+    %p The 2050 work uses generic categories such as 'nuclear power station', 'air source heat pump' or '2nd generation biocrop'.
+    %p These lump together the costs of individual specific technologies such as 'Areva 1.6 GW  EPR', 'Ecodan 5kW W50 ASHP' or'Miscanthus grown in East Anglia'.
+    %p You can use this form to manage one of these generic categories. 
+    %p In particular, you can use it to specify the default units to use when tabulating and plotting points in this category.
+
+    %p 
+      As you click on each box, help and guidance will appear here.

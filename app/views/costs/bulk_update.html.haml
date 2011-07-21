@@ -1,0 +1,24 @@
+%h1 Bulk cost upload or update
+- flash_messages
+%p 
+  Make sure this file is in tab separated value format, with Class Cost in the first row, headers in the second row and data in subsequent rows. Basically the same format as when costs are downloaded (
+  = link_to "Download all cost data points in an excel compatible format", costs_url(:format => :tsv)
+  ) and in the same format as when you copy and paste from excel.
+
+= form_tag bulk_costs_url do
+  = text_area_tag :tsv, params[:tsv], :id => 'bulk_upload_form'
+  %br/
+  = submit_tag
+  of
+  = link_to "Cancel", :back
+  
+- if @uploaded_costs
+  %ol
+    - @uploaded_costs.each_with_index do |cost,i|
+      %li
+        - unless cost.valid?
+          Errors on line #{i+2}: #{cost.errors.full_messages.join(";")}
+        - else
+          = link_to cost.title, cost
+          uploaded without problem.
+    

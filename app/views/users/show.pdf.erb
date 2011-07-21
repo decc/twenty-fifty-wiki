@@ -1,0 +1,37 @@
+\title{<%= escape_latex @user.title %>}
+<%= latex_author %>
+\date{<%= @user.updated_at %>}
+\begin{document}
+\maketitle
+<%- unless @user.picture.url.empty? %>
+\includegraphics[width=\columnwidth]{<%= @user.picture.path %>}
+<% end %>
+<%=raw @user.to_latex %>
+
+\section{Pages that this user has signed off}
+
+\begin{enumerate}
+	<%-  @user.signed_off_all_types.each do |page| %>
+	\item <%= page.title %>
+	<%- end %>
+\end{enumerate}
+
+\section{Recent edits by this user}
+	<%- @user.edits.recent.limit(10).group_by { |v| v.created_at.to_date }.each do |date,versions| %>
+	
+	\subsection*{<%= date %>}
+	\begin{description}
+		<%- versions.each do |version| %>
+		\item[<%= version.updated_at.to_s(:time) %>] <%= version.title %>
+		<%- end %>
+	\end{description}
+	
+	<%- end %>
+
+\section{Pages that this person gets emails about}
+
+\begin{enumerate}
+	<%- @user.followed_all_types.each do |page| %>
+	\item <%= page.title %>
+	<%- end %>
+\end{enumerate}

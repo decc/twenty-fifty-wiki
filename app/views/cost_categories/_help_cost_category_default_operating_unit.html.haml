@@ -1,0 +1,20 @@
+#help.cost_category_default_operating_cost_unit
+  %h2 Default operating cost unit
+  
+  %p This specifies the unit that operating costs are converted into for charts and table relating to this technology.
+
+  %p The unit should be given in a form that includes the money unit and the energy unit. For example:
+  %p
+    = update_operating_default_to '£(2009)/MWh'
+    which means operating costs will be converted into £ per MWh and 2009 money.
+  %p
+    = update_operating_default_to '$m(2010)/1600 MWaverage'
+    which means operating costs will be converted into $m per facility with 1600 MW average output and 2010 money.
+  
+  %p 
+    If you don't specify otherwise, it is assumed that power measures are for average power. Specify peak by tailing the power unit with 'peak'. e.g.:
+  %p
+    = update_operating_default_to '£(2010) bn/1600 MWpeak'
+    which means the costs will be converted to £bn per facility that has a 1600 MW peak output.
+  
+  = render 'costs/known_units'

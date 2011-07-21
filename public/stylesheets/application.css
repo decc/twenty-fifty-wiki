@@ -1,0 +1,287 @@
+/** {margin: 0; padding: 0;}*/
+body {font: 12px 'verdana', serif; color: #333; background: #FFF;}
+h1, h2, h3, h4, h5, h6 { font-family: 'century gothic', sans-serif; font-weight: normal; text-transform: uppercase;}
+h1 {font-size: 2.1em; color: #CA2B51; margin-bottom: 0px;}
+h2 {font-size: 1.6em; }
+h3 {font-size: 1.1em;}
+h4 {font-size: 0.9em; font-weight: bold;}
+#signout {position: absolute; top: 0px; right: 0.5em;}
+img { border:0px}
+#right h4 {margin-bottom: 0px;}
+#wrapper { margin: 0 5em 0 5em;}
+#signoff { margin: 1em 0em 1em 0em; padding: 1px; }
+.signedOff #signoff { background: #afa;}
+.oldSignOff #signoff { background: yellow;}
+.notSignedOff #signoff { background: #faa;}
+#centre { width: 52em; float: left; background: #fff; }
+#right { margin-left: 55em; width: 30em; background: #fff; }
+.clear { clear: both }
+
+#topbit h1 { width: 100%; text-align: center}
+#lefthalf { width: 45%; float: left; border: 0px; margin: 0px; padding: 0px}
+#righthalf { margin-left: 50%; width: 45%; padding: 0px; margin-right: 0px; border: 0px }
+#bottombit { clear: both; width: 100%; margin-top: 3em; margin-bottom: 10em; border-top: solid 1px #000 }
+
+#righthalf #content { padding: 8px 0 1em 0 }
+#righthalf #structured_content { padding: 10px 0 1em 0 }
+
+#bottombit #costcategorylist {
+  width: 100%;
+  -moz-column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 20px;
+  column-count: 4;
+  column-gap: 20px;
+}
+
+#bottombit h2 {
+  margin-top: 1em;
+}
+
+#bottombit #bottomleft {
+  width: 70%;
+  float: left;
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px;
+}
+
+#add {
+  clear: both;
+  width: 100%;
+  text-align: right;
+}
+
+#add a {
+  background-color: #0A0;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 55px;
+  -moz-box-shadow: 0 0 5px #888;
+  -webkit-box-shadow: 0 0 5px #888;
+}
+
+#add a:hover {
+  color: #FDD;
+  -moz-box-shadow: 0 0 1px #888;
+  -webkit-box-shadow: 0 0 1px #888;
+  
+}
+
+#bottombit #bottomright {
+  margin-left: 72%;
+  width: 26%;
+  margin-right: 0px; 
+  padding: 0px; 
+  border: 0px;
+}
+
+#costcategorylist a {
+  display: block;
+  width: 100%;
+}
+
+
+#rightwrapper { padding-top: 1em;}
+#seealso { margin-top: 2em;}
+#seealso li { margin-top: 1em }
+ins { background-color: #0F0; text-decoration: none;}
+del { background-color: #FAA;}
+#search_box {}
+#new_search { margin: 0; padding: 0 }
+#new_search input { display: inline;}
+#new_search #search_term { width: 230px;}
+#new_search #search_submit { width: 50px;}
+table { border: solid 1px #CA2B51; margin: 1em 0em; width: 100%;}
+ul#actions { list-style-type: none; padding: 0; margin: 0}
+ul#actions li {display: inline; margin-right: 1em;}
+#right ul { list-style-type: none; padding-left: 0px; margin-top: 0px; margin-left: 0px}
+ul#master_links { list-style-type: none; padding-left: 0px; margin-left: 0px; margin-top: 0px;}
+ul#master_links li {display: inline; margin-right: 0.8em}
+
+#content ol, #content ul {}
+#content ol ol { list-style: lower-alpha; }
+#content ol ol ol { list-style: lower-roman; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+#content a { color: #0A0; }
+#content a:hover { text-decoration: underline; }
+#content .references .divider { margin-top: 20px; width: 200px; border-top: 1px solid #000 }
+#content .references ol { margin-top: 0px }
+.figure {  margin: 0em 0em 1em 1em; background-color: #ccc;}
+.figure h4 {  background-color: #fff; width: 100%; margin-bottom: 0px; margin-top: 0px;}
+.figure img { margin-bottom: 0px; padding:0px;}
+.figure a.imagelink { margin: 0px; padding:0px;}
+.figure .caption { margin: 0px; padding:0px; font-size: 0.8em; width: 100%}
+.figure .caption p { margin-top: 0px; padding: 0.5em }
+.figure .caption .further_detail { padding-left: 1em;}
+.image {display: inline;}
+
+input#page_title, input#picture_title, input#category_title, input#user_title { width: 100%; font-size: 2.1em; color: #CA2B51;}
+textarea#page_content, textarea#category_content, textarea#user_content  { width: 100%; height: 500px;}
+textarea#picture_content { width: 100%; height: 200px;}
+
+ul.recentChanges, .azindex ul {  list-style-type: none; padding-left: 0px; margin-left: 0px}
+ul.recentChanges span.time { padding-right: 2em;}
+ul.recentChanges li { padding: 0.25em 0 0.25em 0.25em;}
+ul.recentChanges li.selected { background-color: #ccc; color: white;}
+ul.recentChanges li.selected form { display: inline}
+ul.recentChanges li.selected form div { display: inline}
+ul.recentChanges li.selected input { width: 160px; margin-left: 10px; display: inline;}
+
+/*#redirect {padding-bottom: 1em}*/
+div#similarlyTitled { font-size: smaller; padding: 0; margin: 1em 0 0 0; }
+
+#changeindex { width: 30em; float: left;  }
+#change {  margin-left: 30em; width: 50em; border-left: 0.1em solid #ccc; padding-left: 0.5em;} 
+div.search ul#master_links {  list-style-type: none; padding-left: 0px; margin-top: 0px; }
+div.search .result h4 { margin-bottom: 0px;}
+div.search .result p { margin-top: 0px;}
+
+.show #user_picture { float: right; margin: 0 0 1em 1em;}
+ul#subindexes { list-style-type: none; padding-left: 0px; margin-left: 0px; margin-top: 0px;}
+ul#subindexes li {display: inline; margin-right: 0.8em}
+
+#subCategories ul, #superCategories ul { list-style-type: none; padding-left: 0px; margin-left: 0px; margin-top: 0px;}
+#subCategories ul li, #superCategories ul li {display: inline; margin-right: 0.8em}
+
+div.user { clear: both; border: 1px #000 solid; padding: 1em;}
+div.user .image { float: right; padding: 0em 0 1em 1em }
+div.user h2, div.user h3 { padding-top: 0; margin-top: 0 }
+.matrix_login { display: none }
+
+.signup, .signin { width: 40%; border: 1px #000 solid; padding: 1em; margin-top: 3%; height: 440px }
+.signin { float: right }
+h1.login {text-align: center; width: 100%}
+.signup input[type="text"], .signin input[type="text"], .signup input[type="password"], .signin input[type="password"] { width: 98% }
+.signup textarea#user_content { width: 98%; height: 40px}
+
+pre { color: blue}
+em { font-weight: bold; font-style: normal}
+
+.message { width: 100%; text-align: center; border: 1px #000 solid }
+.alert {background-color: #FF0 }
+.notice {width: 100%; text-align: center}
+
+table#cost_points td {
+  padding-right: 2px;
+}
+
+table#cost_points {
+  padding: 0px;
+  margin-left: 0px;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+td.label, th.label {
+  text-align: left;
+}
+
+td.capital_cost, td.operating_cost, td.valid_for_quantity_of_fuel, td.fuel_cost {
+  text-align: right;
+  width: 100px;
+}
+
+th.capital_cost, th.operating_cost, th.valid_for_quantity_of_fuel, th.fuel_cost {
+  text-align: right;
+}
+
+th.source, td.source {
+  text-align: left;
+}
+
+tr.add td {
+  font-weight: bold;
+}
+
+#chart {
+  width: 100%;
+  height: 50em;
+}
+
+#graph .switch {
+  padding-left: 20px;
+  font-size: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.highlight {
+  background-color: #FF0;
+}
+
+input#cost_source_label, input#cost_category_label { width: 100%; font-size: 2.1em; color: #CA2B51;}
+
+input#cost_category_default_capital_unit, input#cost_category_default_operating_unit, input#cost_category_default_fuel_unit, input#cost_category_default_valid_for_quantity_of_fuel_unit { width: 100%;}
+
+textarea#cost_source_content, textarea#cost_content {
+  width: 100%; height: 400px;
+}
+
+textarea#cost_category_content, textarea#cost_category_cost_boilerplate {
+  width: 100%; height: 250px;
+}
+
+#help {
+  background-color: #FF0;
+  padding: 1em;
+  width: 28em;
+  position: absolute;
+}
+
+#help ul { list-style-type: disc; padding-left: 6px; margin-top: 0px; margin-left: 10px}
+
+#help a {
+  font-weight: bold;
+  color: #aab;
+}
+
+#help.default {
+  top: 25px;
+}
+
+#help.cost_content {
+  top: 350px;
+}
+
+#help.cost_category_content {
+  top: 220px;
+}
+
+#help.cost_category_cost_boilerplate {
+  top: 480px;
+}
+
+.cost_form form table {
+  border: none;
+  width: auto;
+}
+
+.cost_form form table td.label {
+  width: 15em;
+  text-align: right;
+}
+
+tr.tall td.label {
+  vertical-align: top;
+}
+
+[disabled] {
+  background-color: #eee;
+  color: #333;
+}
+
+textarea#bulk_upload_form {
+  width: 100%;
+  height: 500px;
+}
+
+table.cost_detail td.normalised {
+  color: #ccc;
+}

@@ -1,0 +1,12 @@
+%h3 Known units
+
+%table
+  %tr
+    %td Power prefixes
+    %td= NormaliseSingleCost::PREFIX.keys.join(" ")
+  %tr
+    %td Power units
+    %td= NormaliseSingleCost::POWER_UNIT.keys.join(" ")
+
+%p Note, if you use a unit of energy such as GWh, then it is assumed to be GWh per year.
+%p Note, we assume that a trillion is a million million.

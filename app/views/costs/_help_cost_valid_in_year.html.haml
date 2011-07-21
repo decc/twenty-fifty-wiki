@@ -1,0 +1,16 @@
+#help.cost_valid_in_year
+  %h2 Year in which cost is valid
+  
+  %p Some costs are based on what happened in the past, some are estimates of what might happen in the future.
+  
+  %p It is useful to know which is the case for this cost and, if the cost is in the future, to note the preconditions for that cost coming true in the 'notes' section lower down the page. 
+  
+  %p Please enter a year, or a range of years. Examples below:
+  %ul
+    %li= update_year "2050", "2040-50", "2040s"
+    %li= update_year "2030", "2030-50", "2030s"
+    %li= update_year "2020", "2020-30", "2020s"
+    %li= update_year "2010", "2010-20", "2010s"
+    %li= update_year "2000s"
+    %li= update_year "1990s"
+    %li= update_year "1980s"

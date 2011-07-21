@@ -1,0 +1,22 @@
+#help.cost_cost_efficiency
+  %h2 Typical average output
+  
+  %p This field is optional. Use it to record the typical average output (if any) reported for this technology in this source.
+  
+  %p If there is no data, leave it blank.
+  
+  %p The output should be given with units. For example:
+  %p
+    = update_output_to '300 MWh'
+    which means the technology has a typical output of 300 MWh per year of energy
+
+  
+  %p Note that the average output can be given as a  percentage of the size or peak capacity. In which case it should be adjusted for all items that reduce the typical output of the technology including parasitic load, maintenance outages, intermittency of wind, etc. For example:
+  
+  For example:
+  %p
+    = update_output_to '37%'
+    which means the technology has a typical output of 37% of its peak capacity.
+  
+
+  = render 'known_units_power'

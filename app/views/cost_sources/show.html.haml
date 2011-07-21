@@ -1,0 +1,57 @@
+#topbit
+  %h1= @cost_source.title
+
+  // = signed_off_message    
+  = redirect_message
+  = similar_pages_message
+      
+#middlebit
+  #lefthalfwide
+    #content
+      - cache do
+        = raw(@cost_source.to_html)
+    %ul#actions
+      %li= link_to 'improve these notes', edit_cost_source_url(@cost_source), :accesskey => "e"
+      %li= link_to 'see who wrote which bits of this note', changes_cost_source_url(@cost_source)
+      %li= follow_link
+  
+  #righthalfnarrow
+    #structured_content
+      %table
+        %tr
+          %th{:colspan => 2} &nbsp;
+          %th{:colspan => 6} Technologies
+          %th{:colspan => 3} Fuels
+        %tr
+          %th.label
+          %th.valid_in_year Valid in year
+          %th.capital_cost Capital cost 
+          %th.operating_cost Operating cost excluding fuel
+          %th.size Size
+          %th.output Output
+          %th.efficiency Efficiency
+          %th.life Life
+          %th.fuel_cost Fuel cost
+          %th.valid_for_quantity_of_fuel Fuel limit
+
+          %th
+          - @cost_source.costs.group_by(&:cost_category).each do |category,costs|
+            - for cost in costs
+              %tr[cost]
+                %td.label= link_to "#{cost.cost_category.label} #{cost.label}", cost
+                %td.valid_in_year= cost.valid_in_year
+                %td.capital_cost= present_cost cost.capital
+                %td.operating_cost= present_cost cost.operating
+                %td.size= cost.size
+                %td.output= cost.output
+                %td.efficiency= cost.efficiency
+                %td.life= cost.life
+                %td.fuel_cost= cost.fuel
+                %td.valid_for_quantity_of_fuel= cost.valid_for_quantity_of_fuel
+  
+  #add
+    = link_to "Add a cost taken from #{@cost_source.label}",  new_cost_source_cost_url(@cost_source)
+
+  .clear
+
+#bottombit= render 'cost_categories/bottombit'

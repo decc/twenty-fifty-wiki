@@ -1,0 +1,10 @@
+\documentclass[a4paper]{book}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+<%= yield %>
+\end{document}
+<% @latex_parse_twice=true %>

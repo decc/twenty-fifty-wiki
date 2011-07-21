@@ -1,0 +1,47 @@
+#centre
+  %h1= @user.name
+  %ul#actions
+    %li= link_to 'edit this information', edit_user_url(@user), :accesskey => "e"
+    %li= link_to 'see who wrote which bits of this page', changes_user_url(@user)
+    %li= follow_link    
+
+  = signed_off_message
+  = redirect_message
+  = similar_pages_message
+  
+  - unless @user.picture.url.empty?
+    #user_picture= link_to image_tag(@user.picture.url(:thumb)), @user.picture.url
+  
+  #content
+    %p= mail_to @user.email
+    - cache do 
+      = raw(@user.to_html)
+
+  / - unless @user.signed_off_all_types.empty?
+  %h2 Pages that this user has signed off
+  
+  = link_list @user.signed_off_all_types
+
+
+  %h2 Recent edits by this user
+
+  %ul.recentChanges
+
+  - @user.edits.recent.limit(10).group_by { |v| v.created_at.to_date }.each do |date,versions|
+
+    %h3= date
+
+    %ul#recentChanges
+    - versions.each do |version|
+      %li
+        %span.time= version.updated_at.to_s(:time)
+        %span.title= link_to version.title, version.target
+        %span.changes= link_to "(changes)", version_url(version)
+
+  %h2 Pages that this person gets emails about
+  
+  = link_list @user.followed_all_types
+  
+  
+    
+#right= render 'pages/right_bar'

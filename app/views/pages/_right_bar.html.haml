@@ -1,0 +1,29 @@
+#rightwrapper
+  %h4= t('title')
+  #search_box
+    = render 'search/form'
+
+  %ul#master_links
+    %li= link_to "home page", root_url
+    %li= link_to "a-z index", index_url
+    %li= link_to "recent changes", recent_changes_url
+    
+  %ul#newpages
+    %li
+      = link_to "add a page", new_page_url
+    %li
+      = link_to "add a cost", new_cost_url
+  
+  #seealso
+  
+    - unless target.categories.to_a.empty?
+      %h4 Related Categories
+      %ul#related_pages
+        - target.categories.each do |category|
+          %li= link_to category.title, category
+          
+    - unless target.linked_to_from_all.empty?
+      %h4 Related Pages, Pictures and Users
+      %ul#related_pages
+        - target.linked_to_from_all.each do |linked|
+          %li= link_to linked.title, linked

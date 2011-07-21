@@ -1,0 +1,11 @@
+.azindex
+  - array.group_by { |v| v.title[0].downcase }.each do |letter,targets|
+
+    %h3= letter.upcase
+
+    %ul
+      - targets.each do |target|
+        %li
+          - unless target.picture.url.empty?
+            = link_to image_tag(target.picture.url(:thumb)), target
+          =link_to target.title, target

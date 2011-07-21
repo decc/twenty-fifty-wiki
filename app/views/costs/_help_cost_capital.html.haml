@@ -1,0 +1,35 @@
+#help.cost_cost_category_label
+  %h2 Capital cost
+  
+  %p Capital costs are the one off costs that occur irrespective of how long a technology operates.
+  
+  %p The costs should include:
+  %ul
+    %li The cost of installation
+    %li The cost of connecting electricity using or producing equipment to the electricity grid
+    
+  %p The costs should not include:
+  %ul
+    %li The cost of financing the development
+    %li Research and development costs
+
+  %p The cost should be given with their units. For example:
+  %p
+    = update_capital_to '£bn(2009) 3/GW'
+    which means the cost is £3bn per GW of capacity, in 2009 money.
+  %p
+    = update_capital_to '£(2010) 3bn/1600 MW'
+    which means the cost is £3bn per 1600 MW facility, in 2010 money.
+  %p
+    = update_capital_to ' €3-6(1990)bn/GW'
+    which means the cost is in the range of €3bn to €6bn per GW of capacity, in 1990 money.
+  
+  %p 
+    If you don't specify otherwise, it is assumed that costs per W, kW or GW are peak powers, and anything else is an AVERAGE power. Specify peak by tailing the power unit with 'peak', and average by tailing the power unit with 'average'.
+  %p
+    = update_capital_to '£bn(2009) 3/GW'
+    which means the cost is £3bn per GW of average output, in 2009 money.
+  %p
+    If you specify average power and the average output is any less than the peak output, please also enter an appropriate typical average output in the field lower down, to allow the cost to be converted into amount per unit of peak capacity if required.
+    
+  = render 'known_units'

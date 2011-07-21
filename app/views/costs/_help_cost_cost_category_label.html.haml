@@ -1,0 +1,10 @@
+#help.cost_cost_category_label
+  %h2 Category for this cost
+  
+  %p The 2050 work uses generic categories such as 'nuclear power station', 'air source heat pump' or '2nd generation biocrop'.
+  %p These lump together the costs of individual specific technologies such as 'Areva 1.6 GW  EPR', 'Ecodan 5kW W50 ASHP' or'Miscanthus grown in East Anglia'.
+  %p Use this field to put your example into the right generic category.
+  %p You can also click on one of the categories below:
+  %ul
+    - CostCategory.all.each do |cost_category|
+      %li= update_category_to cost_category

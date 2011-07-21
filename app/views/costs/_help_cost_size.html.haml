@@ -1,0 +1,18 @@
+#help.cost_cost_size
+  %h2 Typical capacity
+  
+  %p This field is optional. Use it to record the typical capacity (if any) reported for this technology in this source.
+  
+  %p If there is no data, leave it blank.
+  
+  %p The recorded capacity should be the peak output of the technology.
+  
+  %p The capacity should be given with units. For example:
+  %p
+    = update_capacity_to '10 GW'
+    which means the capacity is 10 GW.
+  %p
+    = update_capacity_to '1-5 TWh'
+    which means the peak output is in the range 1 to 5 TWh per year.
+
+  = render 'known_units_power'

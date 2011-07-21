@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  category_id: 1
+  dependency_id: 1
+  target_type: MyString
+  target_id: 1
+
+two:
+  category_id: 1
+  dependency_id: 1
+  target_type: MyString
+  target_id: 1

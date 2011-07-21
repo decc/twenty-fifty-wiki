@@ -1,0 +1,13 @@
+\documentclass[a4paper]{amsart}
+%\usepackage{fontspec}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont{Liberation}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+<%= yield %>
+\end{document}
+<% @latex_parse_twice=true %>

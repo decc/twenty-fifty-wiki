@@ -1,0 +1,14 @@
+= render 'form'
+= render 'site/master_links'
+  
+#content
+  - if @search
+    %p 
+      Would you like to create a page with title
+      = link_to params[:search], new_page_url('page[title]' => params[:search])
+    - @search.each_hit_with_result do |hit, result|
+      .result
+        %h4= link_to result.title, result
+        %p= raw hit.highlight(:content).try(:format) { |word| "<strong>#{word}</strong>" }
+    .pagination
+      = will_paginate(@search.hits)

@@ -1,0 +1,90 @@
+%script= render 'form_javascript.js'
+#centre.cost_form
+  = form_for @cost do |f|
+    -if @cost.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@cost.errors.count, "error")} prohibited this cost from being saved:"
+        %ul
+          - @cost.errors.full_messages.each do |msg|
+            %li= msg
+    %table
+      %tr
+        %td.label= f.label :cost_category_label, "Category"
+        %td.field= f.text_field :cost_category_label
+      %tr
+        %td.label= f.label :cost_source_label, "Source"
+        %td.field= f.text_field :cost_source_label
+      %tr
+        %td.label= f.label :label, "Label"
+        %td.field= f.text_field :label
+
+      %tr.divider
+        %td &nbsp;
+      %tr#type_of_cost.tall
+        %td.label Type of cost
+        %td.field
+          = f.radio_button :cost_type, :fuel
+          A fuel, such as oil, gas, or imported biocrops
+          %br/
+          = f.radio_button :cost_type, :technology
+          A technology, such as a nuclear power station, car, or insulation
+
+      %tr.divider
+        %td &nbsp;
+      %tr.fuel_cost
+        %td.label= f.label :fuel, "Fuel cost"
+        %td.field= f.text_field :fuel
+      %tr.technology_cost
+        %td.label= f.label :capital, "Capital cost"
+        %td.field= f.text_field :capital
+      %tr.technology_cost
+        %td.label= f.label :operating, "Operating cost excluding fuel"
+        %td.field= f.text_field :operating
+      %tr
+        %td.label= f.label :valid_in_year, "Year in which cost is valid"
+        %td.field= f.text_field :valid_in_year
+      %tr.fuel_cost
+        %td.label= f.label :valid_for_quantity_of_fuel, "Fuel available at this cost"
+        %td.field= f.text_field :valid_for_quantity_of_fuel    
+
+      %tr.divider
+        %td &nbsp;
+      %tr.technology_cost
+        %td.label= f.label :size, "Typical capacity"
+        %td.field= f.text_field :size
+      %tr.technology_cost
+        %td.label= f.label :output, "Typical average output"
+        %td.field= f.text_field :output
+      %tr.technology_cost
+        %td.label= f.label :efficiency, "Typical average efficiency"
+        %td.field= f.text_field :efficiency
+      %tr.technology_cost
+        %td.label= f.label :life, "Typical life"
+        %td.field= f.text_field :life
+
+      %tr.divider
+        %td &nbsp;
+      %tr.tall
+        %td.label= f.label :content, " Notes, comments & limitations:"
+        %td.field= f.text_area :content
+      %tr.actions
+        %td
+        %td
+          = f.hidden_field :previous_version_id    
+          = f.submit
+          or #{link_to 'Cancel', :back}
+
+#right
+  #help.default
+    %h2 Help
+    
+    %p 
+      Use this form to add a piece of evidence about the cost of a particular technology or fuel
+  
+    %p 
+      Please only add evidence that is sourced from a 
+      %i public
+      document.
+    
+    %p 
+      As you click on each box, help and guidance will appear here.

@@ -1,0 +1,6 @@
+\title{<%= escape_latex @category.title %>}
+<%= latex_author %>
+\date{<%= @category.updated_at %>}
+\begin{document}
+\maketitle
+<%=raw @category.to_compiled_latex %>

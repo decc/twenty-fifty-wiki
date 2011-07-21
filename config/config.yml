@@ -1,0 +1,4 @@
+common:
+  # id_of_page_to_check_emails_against: nil
+  email_address_to_send_from: decc-wiki@greenonblack.com
+  email_address_to_send_new_user_notifications_to: tom@counsell.org

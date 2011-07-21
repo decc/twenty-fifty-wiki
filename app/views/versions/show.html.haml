@@ -1,0 +1,25 @@
+#changeindex
+  %h1 #{@version.target.title}
+  = link_to "Return to the #{@version.target_type.humanize}", @version.target
+
+  %p= page_newer_changes_link
+
+  - @versions.group_by { |v| v.created_at.to_date }.each do |date,versions|
+
+    %h2= date
+
+    %ul.recentChanges
+      - for version in versions 
+        %li{ :class => (version == @version ? 'selected' : "") }
+          %span.time= version.updated_at.to_s(:time)
+          %span.user= link_to version.user.try(:name), version.user
+          - if version == @version
+            - if (@version.target.updated_at - @version.created_at ) > 1
+              = button_to "Reset #{@version.target_type.downcase} to this version", revert_version_url(@version)
+          - else
+            %span.changes= link_to("(see changes)",version_url(version))
+  
+  %p= page_older_changes_link
+
+#change
+  = render 'version'

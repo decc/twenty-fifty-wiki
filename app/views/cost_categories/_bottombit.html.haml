@@ -1,0 +1,17 @@
+#bottomleft
+  %h2 Other sets of cost data
+  #costcategorylist    
+    - CostCategory.all.each do |cc|
+      = link_to cc.label, cc
+    
+#bottomright
+  %h2 The rest of the wiki
+  #search_box
+    = render 'search/form'
+
+  %ul#master_links
+    %li= link_to "home page", root_url
+    %li= link_to "a-z index", index_url
+    %li= link_to "recent changes", recent_changes_url
+
+.clear

@@ -1,0 +1,5 @@
+\title{<%= escape_latex @page.title %>}
+<%= latex_author %>
+\begin{document}
+\maketitle
+<%=raw @page.to_latex %>

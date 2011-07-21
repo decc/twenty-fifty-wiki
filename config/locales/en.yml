@@ -1,0 +1,25 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  title: "The 2050 Wiki"
+  change_notifications:
+    changes:
+      subject: "Pages that have changed on the 2050 Wiki"
+    new_user:
+      subject: "A new user has registered on the wiki"
+  devise:
+    failure:
+      not_on_list_of_permitted_users: "Sorry, you are not on the list of users permitted to use this wiki. Contact <a href='mailto:tom.counsell@decc.gsi.gov.uk'>tom.counsell@decc.gsi.gov.uk</a> to fix this."
+    registrations:
+      form:
+        email: 'Your email address:'
+        password: "A new 6+ letter password"
+        password_confirmation: 'The same password, again:'
+        content: 'A few words about who you are:'
+        instructions: "When you click 'sign up' below, you will be sent an email. Please click on the link in that email to confirm that you are who you say you are. There may then be a delay before you can actually use the wiki, while we check your credentials."
+    sessions:
+      new:
+        title: "Have you used the 2050 Wiki before?"
+        email: 'Your email address:'
+        password: "Your 6+ letter password:"

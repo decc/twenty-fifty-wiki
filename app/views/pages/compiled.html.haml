@@ -1,0 +1,15 @@
+#centre
+  %h1= @page.title
+  %ul#actions
+    %li= link_to 'improve this page', edit_page_url(@page), :accesskey => "e"
+    %li= link_to 'see who edited this page', changes_page_url(@page)
+    %li= follow_link    
+
+  = signed_off_message  
+  = redirect_message
+  = similar_pages_message
+  
+  #content
+    = raw(@page.to_compiled_html)
+  
+#right= render 'pages/right_bar'

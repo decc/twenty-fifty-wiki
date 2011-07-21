@@ -1,0 +1,14 @@
+#help.cost_category_default_fuel_unit
+  %h2 Default fuel cost unit
+  
+  %p This specifies the unit that fuel costs are converted into for charts and table relating to this category.
+
+  %p The unit should be given in a form that includes the money unit and the energy unit. For example:
+  %p
+    = update_fuel_default_to '£bn(2009)/Mtoe'
+    which means the fuel costs will be converted into £bn per Mtoe of energy and 2009 money.
+  %p
+    = update_fuel_default_to '£(2010)/3 MWh'
+    which means fuel costs will be converted to £ per 3 MWh of demand and 2010 money.
+  
+  = render 'costs/known_units'

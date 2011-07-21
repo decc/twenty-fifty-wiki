@@ -1,0 +1,32 @@
+#centre
+  = form_for @cost_source do |f|
+    -if @cost_source.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@cost_source.errors.count, "error")} prohibited this cost_source from being saved:"
+        %ul
+          - @cost_source.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :label,"Label to give this source on charts"
+      %br/
+      = f.text_field :label
+    .field
+      = f.label :content, "Notes on this source, such as where to find it"
+      %br/
+      = f.text_area :content
+    .actions
+      = f.hidden_field :previous_version_id    
+      = f.submit
+      or #{link_to 'Cancel', :back}
+
+#right
+  #help.default
+    %h2 Help
+
+    %p Use this form to note:
+    
+    %ul
+      %li Where to find this source. Ideally a full bibliographic reference and a url
+      %li General notes on the method by which this source arrived at its estimates
+      %li Limitations of this cost source

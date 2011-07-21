@@ -1,0 +1,8 @@
+.azindex
+  - array.compact.group_by { |v| v.title[0].downcase }.each do |letter,targets|
+
+    %h3= letter.upcase
+
+    %ul
+      - targets.each do |target|
+        %li=link_to target.try(:title), target

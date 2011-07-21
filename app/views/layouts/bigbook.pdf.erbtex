@@ -1,0 +1,17 @@
+\documentclass[12pt,a4paper]{memoir}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\hypersetup{colorlinks=false,pdfborder={0 0 0}}
+\usepackage[english]{babel}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{color}
+\definecolor{deccblue}{RGB}{0,169,245}
+\renewcommand*\colorchaptitle{\color{deccblue}}
+
+\begin{document}
+  \begin{titlepage}
+%    \include{<%= %>}
+  \end{titlepage}
+  <%= yield %>
+\end{document}
+<% @latex_parse_twice=true %>

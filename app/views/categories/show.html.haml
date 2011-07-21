@@ -1,0 +1,32 @@
+#centre
+  %h1= @category.title
+  %ul#actions
+    %li= link_to 'improve this category', edit_category_url(@category), :accesskey => "e"
+    %li= link_to 'see who edited this category', changes_category_url(@category)
+    %li= follow_link    
+
+  = signed_off_message  
+  = redirect_message
+  = similar_pages_message
+  
+  #content
+    - cache do
+      = raw(@category.to_html)
+  
+      - unless @category.parent_categories.empty?
+        #superCategories
+          %ul
+            Supercategories:
+            - @category.parent_categories.each do |category|
+              %li= link_to category.title, category
+  
+      - unless @category.child_categories.empty?
+        #subCategories
+          %ul
+            Subcategories:
+            - @category.child_categories.each do |category|
+              %li= link_to category.title, category
+  
+      = link_list @category.child_category_memberships.map(&:target).uniq.sort_by { |t| t.title.downcase }
+
+#right= render 'pages/right_bar'

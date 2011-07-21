@@ -1,0 +1,9 @@
+#help.cost_category_label
+  %h2 Label for tables and charts
+  
+  %p Please give this category a precise, meaningful, short, label for use in tables and charts (e.g., Nuclear)
+  
+  %p Examples include:
+  %ul
+    - CostCategory.order('updated_at DESC').limit(10).all.each do |cost_category|
+      %li= update_label_to cost_category.label

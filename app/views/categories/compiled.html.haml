@@ -1,0 +1,15 @@
+#centre
+  %h1= @category.title
+  %ul#actions
+    %li= link_to 'improve this category', edit_category_url(@category), :accesskey => "e"
+    %li= link_to 'see who edited this category', changes_category_url(@category)
+    %li= follow_link    
+
+  = signed_off_message  
+  = redirect_message
+  = similar_pages_message
+  
+  #content
+    = raw(@category.to_compiled_html)
+  
+#right= render 'pages/right_bar'

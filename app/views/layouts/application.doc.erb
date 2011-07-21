@@ -1,0 +1,21 @@
+From: The DECC Wiki
+Subject: <%= target.try(:title) || 'The DECC Wiki' %>
+Date: Thu, 4 Nov 2010 18:42:44 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01CB7C50.119ED180"
+X-MimeOLE: Produced By DECC Wiki
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01CB7C50.119ED180
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: <%= url_for(target) %>
+
+
+<%= yield %>
+
+------=_NextPart_000_0000_01CB7C50.119ED180--

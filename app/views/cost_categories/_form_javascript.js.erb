@@ -1,0 +1,30 @@
+makeFuelCostForm = function() {
+  $$(".fuel_cost").invoke('show');
+  $$(".technology_cost").invoke('hide');
+};
+
+makeTechnologyCostForm = function() {
+  $$(".fuel_cost").invoke('hide');
+  $$(".technology_cost").invoke('show');
+};
+
+document.observe('dom:loaded', function() {
+  $$("input").invoke('observe','focus', function() {
+    new Ajax.Updater('right', '/cost_categories/help/'+this.id, {asynchronous:true, evalScripts:true});
+  });
+
+  $$("textarea").invoke('observe','focus', function() {
+    new Ajax.Updater('right', '/cost_categories/help/'+this.id, {asynchronous:true, evalScripts:true});
+  });
+  
+  
+  $("cost_category_cost_type_fuel").observe('click', function() {
+    makeFuelCostForm();
+  });
+  
+  $("cost_category_cost_type_technology").observe('click', function() {
+    makeTechnologyCostForm();
+  });
+  
+  <%= @cost_category.cost_type == :fuel ? "makeFuelCostForm();" : "makeTechnologyCostForm();" %>
+});

@@ -1,0 +1,17 @@
+#help.cost_cost_category_label
+  %h2 Fuel cost
+  
+  %p The costs should include:
+  %ul
+    %li The cost of the fuel
+    %li The cost of any pre-processing or disposal (especially in the case of uranium)
+    
+  %p The cost should be given with their units. For example:
+  %p
+    = update_fuel_to '£(2009) 30/MWh'
+    which means the cost is £30 per MWh of energy content in the fuel, in 2009 money.
+  %p
+    = update_fuel_to ' €10-30(1990)bn/MWh'
+    which means the cost is in the range of €10 to €30 per MWh of energy content in the fuel, in 1990 money.
+
+  = render 'known_units'

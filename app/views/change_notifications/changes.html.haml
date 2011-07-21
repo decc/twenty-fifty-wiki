@@ -1,0 +1,17 @@
+%p
+  = @user.title
+  , you asked to get an email when the following pages changed:
+
+%ul
+  - for version in @versions
+    %li
+      %span.time= version.updated_at.to_s(:time)
+      = link_to version.try(:title), polymorphic_url(version.target)
+      updated by 
+      = link_to version.user.try(:name), user_url(version.user)
+      
+%p If you have any questions, please contact tom.counsell@decc.gsi.gov.uk
+
+%p With best wishes
+
+%p Tom Counsell

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  source: MyText
+  capital_original: MyString
+  capital_normalised: 
+  operating_origina: MyString
+  operating_normalised: 
+
+two:
+  name: MyString
+  source: MyText
+  capital_original: MyString
+  capital_normalised: 
+  operating_origina: MyString
+  operating_normalised: 

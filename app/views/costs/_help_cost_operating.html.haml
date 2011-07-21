@@ -1,0 +1,35 @@
+#help.cost_operating
+  %h2 Operating cost
+  
+  %p Operating costs are the costs that occur every year, and we choose to exclude the cost of fuel.
+  
+  %p The costs should include:
+  %ul
+    %li The cost of running and maintaining the technology
+    
+  %p The costs should not include:
+  %ul
+    %li The cost of financing the technology
+    %li The cost of any fuel that the technology uses
+
+  %p The cost should be given with their units. For example:
+  %p
+    = update_operating_to '£(2009) 30/MWh'
+    which means the cost is £30 per MWh of energy output, in 2009 money.
+  %p
+    = update_operating_to '£(2010) 3m/5 TWh'
+    which means the operating cost is £3m for the facility, in 2010 money, and the facility has a 5 TWh annual output.
+  %p
+    = update_operating_to ' €10-30(1990)bn/MWh'
+    which means the cost is in the range of €10 to €30 per MWh of output, in 1990 money.
+
+  %p 
+    If you don't specify otherwise, it is assumed that costs per W, kW or GW are peak powers, and anything else is an AVERAGE power. Specify peak by tailing the power unit with 'peak', and average by tailing the power unit with 'average'. e.g.:
+  %p
+  = update_operating_to '£(2009) 30/kWpeak'
+  which means the cost is £30 per kW of peak plant capacity, in 2009 money.
+  %p
+    If you specify peak power, please also enter an appropriate typical average output power or load factor in the field lower down, to allow the cost to be converted into amount per unit of average capacity if required.
+  
+  
+  = render 'known_units'

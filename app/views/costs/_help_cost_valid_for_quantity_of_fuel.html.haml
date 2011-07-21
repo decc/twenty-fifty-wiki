@@ -1,0 +1,15 @@
+#help.cost_valid_for_quantity_of_fuel
+  %h2 Fuel available at this cost
+  
+  %p Sometimes, only a certain amount of fuel is available at a given cost, with extra fuel costing more.
+  
+  %p If that applies in this case, please enter the limit. If it doesn't, and the availability of fuel at this cost is, for practical purposes, unlimited, then leave the field blank.
+  
+  %p Please include the total fuel available at less than or equal to this cost.
+  
+  %p The limit should be given with units. For example:
+  %p
+    = update_fuel_limit_to '300 MWh'
+    which means the cost is valid for up to 300 MWh per year of energy content in the fuel
+
+  = render 'known_units_power'

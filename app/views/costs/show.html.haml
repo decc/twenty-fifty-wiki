@@ -1,0 +1,59 @@
+#topbit
+  %h1= @cost.title
+
+  // = signed_off_message    
+  = redirect_message
+  = similar_pages_message
+
+#middlebit
+  #lefthalf
+    #graph
+      #chart
+      %script
+        - @cost_category = @cost.cost_category
+        = cost_category_chart
+        this_cost = myPoints['cost_#{@cost.id}'];
+        this_cost.highlight_this_and_fade_others();
+        this_cost.setDefaultAttributesToCurrentAttributes();
+      .switch
+        - unless @cost_category.is_a_fuel?
+          - if params[:chart_x] == "valid_in_year"
+            = link_to "Change chart to show capital costs against operating costs", cost_url(@cost)
+          - else
+            = link_to "Change chart to show capital costs against time", cost_url(@cost,:chart_x => 'valid_in_year')
+  
+  #righthalf
+    #structured_content
+      %table.cost_detail
+        %tr
+          %td Category
+          %td{:colspan => 2}= link_to @cost.cost_category.label, @cost.cost_category
+        %tr
+          %td Source
+          %td= link_to @cost.cost_source.label, @cost.cost_source
+        - [["Capital cost",:capital],["Operating cost",:operating],["Fuel cost",:fuel],["Year for which cost is valid",:valid_in_year],["Limit on quantity available at this cost",:valid_for_quantity_of_fuel],["Typical size",:size],["Typical average output",:output],["Typical efficiency",:efficiency],["Typical life",:life]].each do |attribute|
+          - unless @cost[attribute.last].blank?
+            %tr
+              %td= attribute.first
+              %td= @cost[attribute.last]
+              %td.normalised
+                - if @cost.respond_to?("#{attribute.last}_normalised")
+                  #{present_cost @cost.send("#{attribute.last}_normalised")}#{@cost.cost_category["default_#{attribute.last}_unit"]}
+  
+    #content
+      %h2 Notes
+      - cache do
+        = raw(@cost.to_html)
+  
+    %ul#actions
+      %li= link_to 'improve this data point', edit_cost_url(@cost), :accesskey => "e"
+      %li= link_to 'see who edited this data point', changes_cost_url(@cost)
+      %li= follow_link
+      
+    #add
+      = link_to "Clone this cost",  new_cost_url(:cost_to_clone => @cost.id)
+
+  
+  .clear
+
+#bottombit= render 'cost_categories/bottombit'

@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title= @title || target.try(:title) || 'The 2050 Costs Wiki'
+    = stylesheet_link_tag "application", :media => 'all'
+    = stylesheet_link_tag "print", :media => 'print'
+    = javascript_include_tag :all
+    = csrf_meta_tag
+  %body
+    #signout= link_to "Sign out", destroy_user_session_url
+    #wrapper{:class => "#{controller_name} #{action_name} #{sign_off_status}"}
+      = yield

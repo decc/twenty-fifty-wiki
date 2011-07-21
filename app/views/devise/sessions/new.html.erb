@@ -1,0 +1,31 @@
+<%- flash_messages %>
+
+<h1 class='login'><%= t('.title') %></h1>
+<p class='notice'>Note for DECC users: you need to register separately for this wiki. Your DECC wiki password won't work</p>
+
+<div class='signin'>
+  <h1>Yes?</h1>
+  <h2>Please sign in</h2>
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <p><%= f.label :email, t('.email') %><br />
+    <%= f.text_field :email %></p>
+
+    <p><%= f.label :password, t('.password') %><br />
+    <%= f.password_field :password %><br />
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %></p>
+
+    <% if devise_mapping.rememberable? -%>
+      <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <% end -%>
+
+    <p><%= f.submit "Sign in" %></p>
+  <% end %>
+</div>
+
+<div class='signup'>
+  <h1>No?</h1>
+  <%= render :partial => 'devise/registrations/form' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+</div>
+

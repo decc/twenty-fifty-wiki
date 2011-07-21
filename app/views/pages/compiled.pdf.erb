@@ -1,0 +1,6 @@
+\title{<%= escape_latex @page.title %>}
+<%= latex_author %>
+\date{<%= @page.updated_at %>}
+\begin{document}
+\maketitle
+<%=raw @page.to_compiled_latex({'book' => 'chapter','bigbook' => 'part'}[params[:layout]]) %>

@@ -1,0 +1,14 @@
+#help.cost_category_default_valid_for_quantity_of_fuel_unit
+  %h2 Default unit for limits on how much of this fuel is available
+  
+  %p This specifies the unit that any limits on the availability of a fuelare converted into for charts and table relating to this category.
+
+  %p For example:
+  %p
+    = update_valid_for_quantity_of_fuel_default_to 'MW'
+    which means the fuel limits will be converted into MegaWatts.
+  %p
+    = update_valid_for_quantity_of_fuel_default_to 'GJ'
+    which means the fuel limits will be converted into GJ.
+
+  = render 'costs/known_units_power'

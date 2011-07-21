@@ -1,0 +1,20 @@
+#help.cost_category_default_capital_cost_unit
+  %h2 Default capital cost unit
+  
+  %p This specifies the unit that capital costs are converted into for charts and table relating to this technology.
+
+  %p The unit should be given in a form that includes the money unit and the energy unit. For example:
+  %p
+    = update_capital_default_to '£bn(2009)/GWpeak'
+    which means the costs will be converted into £bn per GW of capacity and 2009 money.
+  %p
+    = update_capital_default_to '£(2010) bn/1600 MWpeak'
+    which means the costs will be converted to £bn per 1600 MW facility and 2010 money.
+  
+  %p 
+    If you don't specify otherwise, it is assumed that power measures are PEAK power. Specify average by tailing the power unit with average. e.g.:
+  %p
+    = update_capital_default_to '£(2010) bn/1600 MWaverage'
+    which means the costs will be converted to £bn per facility that has a 1600 MW average output.
+  
+  = render 'costs/known_units'

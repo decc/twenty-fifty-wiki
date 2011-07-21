@@ -1,0 +1,10 @@
+<%= @user.title %>, you asked to get an email when the following pages changed:
+<%- @versions.each do |v| %>
+<%= v.updated_at.to_s(:time) %> <%= v.try(:title) %> updated by <%= v.user.try(:name) %> (<%= polymorphic_url(v.target)%>)
+<%- end %>
+
+If you have any questions, please contact tom.counsell@decc.gsi.gov.uk
+
+With best wishes
+
+Tom Counsell

@@ -1,0 +1,6 @@
+\title{<%= escape_latex @picture.title %>}
+<%= latex_author %>
+\date{<%= @picture.updated_at %>}
+\begin{document}
+\maketitle
+<%=raw @picture.to_latex %>

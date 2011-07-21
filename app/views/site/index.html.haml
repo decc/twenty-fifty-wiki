@@ -1,0 +1,5 @@
+%h1 A-Z index of pages, pictures and users on this site
+= render 'master_links'
+= render 'sub_indexes'
+
+= link_list @titles.map(&:target)

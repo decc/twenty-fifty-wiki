@@ -1,0 +1,40 @@
+makeFuelCostForm = function() {
+  $$(".fuel_cost").invoke('show');
+  $$(".technology_cost").invoke('hide');
+};
+
+makeTechnologyCostForm = function() {
+  $$(".fuel_cost").invoke('hide');
+  $$(".technology_cost").invoke('show');
+};
+
+var previous_content = <%= raw (@cost.cost_category.try(:cost_boilerplate) || "" ).to_json %>;
+
+setContentIfUnchanged = function(new_content) {
+  if($F("cost_content").strip() == "" || $F("cost_content") == previous_content) {
+    $("cost_content").setValue(new_content);
+    previous_content = new_content;
+  }
+}
+
+document.observe('dom:loaded', function() {
+  $$("input").invoke('observe','focus', function() {
+    new Ajax.Updater('right', '/costs/help/'+this.id, {asynchronous:true, evalScripts:true});
+  });
+
+  $$("textarea").invoke('observe','focus', function() {
+    new Ajax.Updater('right', '/costs/help/'+this.id, {asynchronous:true, evalScripts:true});
+  });
+  
+  
+  $("cost_cost_type_fuel").observe('click', function() {
+    makeFuelCostForm();
+  });
+  
+  $("cost_cost_type_technology").observe('click', function() {
+    makeTechnologyCostForm();
+  });
+  
+  <%= @cost.cost_type == :fuel ? "makeFuelCostForm();" : "makeTechnologyCostForm();" %>
+});
+

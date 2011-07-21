@@ -1,0 +1,19 @@
+#centre
+  %h1 Recent changes
+  = render 'master_links'
+
+  %p= newer_recent_changes_link
+
+  - @versions.group_by { |v| v.created_at.to_date }.each do |date,versions|
+
+    %h2= date
+
+    %ul.recentChanges
+      - for version in versions 
+        %li
+          %span.time= version.updated_at.to_s(:time)
+          = link_to version.try(:title), version.target
+          updated by 
+          = link_to version.user.try(:name), version.user
+        
+  %p= older_recent_changes_link

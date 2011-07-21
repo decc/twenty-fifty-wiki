@@ -1,0 +1,18 @@
+#centre
+  %h1= @picture.title
+  %ul#actions
+    %li= link_to 'improve this picture', edit_picture_url(@picture), :accesskey => "e"
+    %li= link_to 'see who edited this picture', changes_picture_url(@picture)
+    %li= follow_link
+
+  = signed_off_message      
+  = redirect_message
+  = similar_pages_message
+  
+  #image= link_to image_tag(@picture.picture.url(:medium)), @picture.picture.url
+  
+  #content
+    - cache do 
+      = raw(@picture.to_html)
+
+#right= render 'pages/right_bar'

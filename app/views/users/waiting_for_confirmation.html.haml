@@ -1,0 +1,15 @@
+%h1 Thank you #{@user.name}
+
+%p Two thinks now need to happen before you can use this wiki:
+
+%ol
+  %li An email has been sent to #{@user.email}. Please click on the link in that email to activate your account. If the email does not arrive within a few minutes, please #{link_to "request a new email", new_confirmation_path('user') }.
+  %li A member of the DECC team will check your credentials and add you to a list of authorised users. This may take a few working days.
+
+- if @page
+  In the mean time, you could read this:
+
+  %h2= @page.title
+  
+  - cache do
+    = raw(@page.to_html)

@@ -1,0 +1,78 @@
+#topbit
+  %h1= @cost_category.title
+
+  // = signed_off_message    
+  = redirect_message
+  = similar_pages_message
+
+#middlebit
+  #lefthalf
+    #graph
+      #chart
+      %script= cost_category_chart
+      .switch
+        - unless @cost_category.is_a_fuel?
+          - if params[:chart_x] == "valid_in_year"
+            = link_to "Change chart to show capital costs against operating costs", cost_category_url(@cost_category)
+          - else
+            = link_to "Change chart to show capital costs against time", cost_category_url(@cost_category,:chart_x => 'valid_in_year')
+      
+    
+  #righthalf
+    #structured_content
+      %table#cost_points
+        %tr
+          %th.label{:rowspan => 2} Data point
+          %th.valid{:rowspan => 2} Valid in
+          - if @cost_category.is_a_fuel?
+            %th.fuel_cost Cost
+            %th.valid_for_quantity_of_fuel Limit
+          - else
+            %th.capital_cost Capital cost 
+            %th.operating_cost Operating cost excluding fuel
+          %th.source{:rowspan => 2} Source
+        %tr.units
+          - if @cost_category.is_a_fuel?
+            %td.fuel_cost= @cost_category.default_fuel_unit
+            %td.valid_for_quantity_of_fuel= @cost_category.default_valid_for_quantity_of_fuel_unit
+          - else
+            %td.capital_cost= @cost_category.default_capital_unit
+            %td.operating_cost= @cost_category.default_operating_unit
+        - for cost in @cost_category.costs
+          %tr[cost]
+            %td.label= link_to (cost.label.blank? ? cost.cost_source.label : cost.label), cost
+            %td.valid= cost.valid_in_year
+            - if @cost_category.is_a_fuel?
+              %td.fuel_cost= present_cost cost.fuel_cost_normalised
+              %td.valid_for_quantity_of_fuel= present_cost cost.valid_for_quantity_of_fuel_normalised
+            - else
+              %td.capital_cost= present_cost cost.capital_cost_normalised
+              %td.operating_cost= present_cost cost.operating_cost_normalised
+            %td.source= link_to cost.cost_source.label, cost.cost_source
+        - unless @cost_category.costs.empty?
+          %tr.range
+            %td Range
+            %td= @cost_category.valid_in_year_normalised_range.try(:join,"-")
+            - if @cost_category.is_a_fuel?
+              %td.fuel_cost= present_cost  @cost_category.fuel_cost_normalised_range
+              %td.valid_for_quantity_of_fuel= present_cost @cost_category.valid_for_quantity_of_fuel_normalised_range
+            - else
+              %td.capital_cost= present_cost @cost_category.capital_cost_normalised_range
+              %td.operating_cost= present_cost @cost_category.operating_cost_normalised_range
+            %td.source &nbsp;
+        
+    #content
+      %h2 Notes
+      - cache do
+        = raw(@cost_category.to_html)
+    %ul#actions
+      %li= link_to 'improve this text', edit_cost_category_url(@cost_category), :accesskey => "e"
+      %li= link_to 'see who changed this text', changes_cost_category_url(@cost_category)
+      %li= follow_link
+    
+    #add
+      = link_to "Add a cost for #{@cost_category.label}",  new_cost_category_cost_url(@cost_category)
+      
+  .clear
+
+#bottombit= render 'bottombit'

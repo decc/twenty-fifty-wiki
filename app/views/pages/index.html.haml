@@ -1,0 +1,6 @@
+%h1 A-Z index of pages on this site
+= render 'site/master_links'
+= render 'site/sub_indexes'
+
+- cache do 
+  = link_list @pages
