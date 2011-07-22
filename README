@@ -42,8 +42,15 @@ Depends on:
 
 Setup:
   gem install heroku
-  create the cedar gem
-  addons for: mail, sunspot, cron
+  # if you don't already have a ssh key, then:
+  # ssh-keygen -t rsa
+  # if you don't already have a heroku account, register, then:
+  # heroku keys:add
+  heroku create --stack cedar
+  heroku addons:add sendgrid:free
+  heroku addons:add websolr
+  heroku addons:add cron:daily
+  
   
 
 RUNNING ON EC2
