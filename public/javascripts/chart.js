@@ -104,8 +104,8 @@ ScatterPlot = function(input) {
     this.xGridSpace = input.xGridSpace || x_space;
     this.yGridSpace = input.yGridSpace || y_space;
 
-    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([50,this.width-20]);
-    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-20,50]);
+    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([30,this.width-30]);
+    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-30,30]);
 
     this.buildGrid = function() {
         var xLabelHeight = 40;
@@ -117,61 +117,27 @@ ScatterPlot = function(input) {
         var height = this.height - xLabelHeight - y;
         var numberOfHorizontalGridLines = ((this.maximumDataValueX-this.minimumDataValueX) / this.xGridSpace);
         var numberOfVerticalGridLines = ((this.maximumDataValueY-this.minimumDataValueY) / this.yGridSpace);
-
-        this.paper.drawGrid(x, y, width, height, numberOfHorizontalGridLines, numberOfVerticalGridLines, "#ccc");
-
-        var drawXLabels = function() {
-            for (var index = 0, length = numberOfHorizontalGridLines; index <= length; index++) {
-                var labelTextX = (index * this.xGridSpace)+this.minimumDataValueX;
-                var labelPositionX = yLabelWidth + (index * width / numberOfHorizontalGridLines);
-                var labelCentreX = this.height - (xLabelHeight * 0.75);
-
-                this.paper.text(labelPositionX, labelCentreX, labelTextX).attr({
-                    "font": '10px "Arial"',
-                    stroke: "none",
-                    fill: "#000"
-                });
-            }
-        }.call(this);
-
-        var drawXTitle = function() {
-            this.paper.text(yLabelWidth + (width / 2), this.height - (xLabelHeight / 4), this.xTitle).attr({
-                "font": '10px "Arial"',
-                stroke: "none",
-                fill: "#000"
-            });
-        }.call(this);
-
-        var drawYLabels = function() {
-            for (var index = 0, length = numberOfVerticalGridLines; index <= length; index++) {
-                var labelTextY = (index * this.yGridSpace)+this.minimumDataValueY;
-                var labelPositionY = height - (index * height / numberOfVerticalGridLines) + 20;
-
-                // Use Rapha&#195;&#171;l to draw the label text onto the canvas
-                this.paper.text(yLabelWidth*0.9, labelPositionY, labelTextY).attr({
-                    "font": '10px "Arial"',
-                    stroke: "none",
-                    fill: "#000",
-                    'text-anchor': "end"
-                });
-            }
-        }.call(this);
-
-        var drawYTitle = function() {
-            var YTitle = this.paper.text(yLabelWidth * 0.25, (height / 2) + 20, this.yTitle).attr({
-                "font": '10px "Arial"',
-                stroke: "none",
-                fill: "#000"
-            });
-            YTitle.rotate( - 90);
-        }.call(this);
-
-        return {
-            x: x,
-            y: y,
-            width: width,
-            height: height
-        };
+        
+        // x-axis
+        ticks = screenX.ticks(10);
+        y = screenY.range()[0] + 10;
+        for(var i=0,l=ticks.length;i<l;i++) {
+          x = screenX(ticks[i]);
+          this.paper.line(x,screenY.range()[0],x,screenY.range()[1]).attr({stroke:"#ccc"});
+          this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        }
+        this.paper.text((screenX.range()[0] + screenX.range()[1])/2, y + 10, this.xTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
+        
+        // y-axis
+        ticks = screenY.ticks(10);
+        x = screenX.range()[0] - 10;
+        for(var i=0,l=ticks.length;i<l;i++) {
+          y = screenY(ticks[i]);
+          this.paper.line(screenX.range()[0],y,screenX.range()[1],y).attr({stroke:"#ccc"});
+          this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        }
+        var ytitle = this.paper.text(x-10,(screenY.range()[0] + screenY.range()[1])/2,this.yTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
+        ytitle.rotate(-90);
     };
     
     this.shape = function(x,y,label,color) {
