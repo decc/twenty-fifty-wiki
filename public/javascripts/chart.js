@@ -65,8 +65,8 @@ ScatterPlot = function(input) {
     this.maximumDataValueY = input.maxY || Math.max.apply(Math, this.yData.flatten());
     this.maximumDataValueX = input.maxX || Math.max.apply(Math, this.xData.flatten());
 
-    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([30,this.width-30]);
-    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-30,30]);
+    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([30,this.width-30]).nice();
+    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-30,30]).nice();
 
     this.buildGrid = function() {
         // x-axis
