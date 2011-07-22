@@ -46,13 +46,18 @@ Setup:
   # ssh-keygen -t rsa
   # if you don't already have a heroku account, register, then:
   # heroku keys:add
+  # Now setup the heroku stack
   heroku create --stack cedar
   heroku addons:add sendgrid:free
   heroku addons:add websolr
   heroku addons:add cron:daily
+  # Now transfer the code up to heroku
+  git push heroku master
+  # Now setup the database
+  heroku run rake db:migrate
+  # Now start the app running
+  heroku ps:scale web=1 worker=1
   
-  
-
 RUNNING ON EC2
 
 #!/bin/bash
