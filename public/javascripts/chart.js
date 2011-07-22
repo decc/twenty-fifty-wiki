@@ -104,6 +104,9 @@ ScatterPlot = function(input) {
     this.xGridSpace = input.xGridSpace || x_space;
     this.yGridSpace = input.yGridSpace || y_space;
 
+    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([50,this.width-20]);
+    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-20,50]);
+
     this.buildGrid = function() {
         var xLabelHeight = 40;
         var yLabelWidth = 50;
@@ -184,11 +187,13 @@ ScatterPlot = function(input) {
     };
     
     this.chartX = function(x){
-      return this.grid.x + ( (x - this.minimumDataValueX) * this.grid.width / (this.maximumDataValueX - this.minimumDataValueX));
+//      return this.grid.x + ( (x - this.minimumDataValueX) * this.grid.width / (this.maximumDataValueX - this.minimumDataValueX));
+        return screenX(x);
     };
     
     this.chartY = function(y) {
-      return this.grid.y + this.grid.height - ( (y - this.minimumDataValueY) * this.grid.height / (this.maximumDataValueY - this.minimumDataValueY));
+//      return this.grid.y + this.grid.height - ( (y - this.minimumDataValueY) * this.grid.height / (this.maximumDataValueY - this.minimumDataValueY));
+        return screenY(y);
     };
     
     this.pointShape = function(_x,_y,label,color) {
