@@ -60,64 +60,15 @@ ScatterPlot = function(input) {
 
     this.paper = Raphael(this.location, this.width, this.height);
     
-    var space = function(number) {
-      return number / 10;
-      // if( number <= 1) { 
-      //   return 0.1;
-      // } else if (number<= 10) {
-      //   return 1.0;
-      // } else if (number<= 20) {
-      //     return 2.0;
-      // } else if (number <= 50 ) {
-      //   return 5.0;       
-      // } else if (number <= 100 ) {
-      //   return 10.0;
-      // } else if (number <= 200 ) {
-      //   return 20.0;
-      // } else if (number <= 500 ) {
-      //   return 50.0;
-      // } else if (number <= 1000 ) {
-      //   return 100.0;
-      // } else if (number <= 2000 ) {
-      //   return 200.0;
-      // } else if (number <= 5000 ) {
-      //   return 500.0;
-      // } else {
-      //   return number / 10;
-      // }
-    };
-    
-    var rounded_max = function(number) {
-      var exp = Math.pow(10,Math.floor(Math.log(number) / Math.log(10)));
-      return Math.ceil(number / exp) * exp;
-    }
-    
-    var x_max = rounded_max(Math.max.apply(Math, this.xData.flatten()));
-    var x_space = space(x_max);
-    var y_max = rounded_max(Math.max.apply(Math, this.yData.flatten()));
-    var y_space = space(y_max);
-    
     this.minimumDataValueX = input.minX || 0;
     this.minimumDataValueY = input.minY || 0;
-    this.maximumDataValueY = input.maxY || y_max;
-    this.maximumDataValueX = input.maxX || x_max;
-    this.xGridSpace = input.xGridSpace || x_space;
-    this.yGridSpace = input.yGridSpace || y_space;
+    this.maximumDataValueY = input.maxY || Math.max.apply(Math, this.yData.flatten());
+    this.maximumDataValueX = input.maxX || Math.max.apply(Math, this.xData.flatten());
 
     var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([30,this.width-30]);
     var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-30,30]);
 
     this.buildGrid = function() {
-        var xLabelHeight = 40;
-        var yLabelWidth = 50;
-
-        var x = yLabelWidth;
-        var y = 20;
-        var width = this.width - yLabelWidth - 20;
-        var height = this.height - xLabelHeight - y;
-        var numberOfHorizontalGridLines = ((this.maximumDataValueX-this.minimumDataValueX) / this.xGridSpace);
-        var numberOfVerticalGridLines = ((this.maximumDataValueY-this.minimumDataValueY) / this.yGridSpace);
-        
         // x-axis
         ticks = screenX.ticks(10);
         y = screenY.range()[0] + 10;
