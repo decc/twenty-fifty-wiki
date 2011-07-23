@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
   include Followers
   include SignOff
   include Searchable
-    
-  default_scope order('LOWER(title) ASC')
   
   has_many :pages
   has_many :edits, :class_name => 'Version'

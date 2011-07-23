@@ -12,8 +12,6 @@ class Picture < ActiveRecord::Base
   # Validations
   validates_uniqueness_of :title, :case_sensitive => false
   
-  default_scope order('LOWER(title) ASC')
-
   has_attached_file :picture
   before_save :update_picture_dimensions
   

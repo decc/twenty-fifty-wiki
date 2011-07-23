@@ -8,9 +8,7 @@ class Page < ActiveRecord::Base
   include Followers
   include SignOff
   include Searchable
-  
-  default_scope order('LOWER(title) ASC')
-  
+    
   def ast
     @ast ||= SokclothParser.parse(content)
   end
