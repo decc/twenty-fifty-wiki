@@ -16,8 +16,7 @@ group :development do
 end
 
 group :production do
-  gem "pg" # for heroku
-  # gem 'ruby-mysql', '2.9.3'
+  gem "mysql2", "~> 0.2.7"
 end
 
 group :testing do

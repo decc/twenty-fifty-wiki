@@ -8,7 +8,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.5.0)
+    ZenTest (4.6.0)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -101,6 +101,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mysql2 (0.2.11)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
     paperclip (2.3.15)
@@ -108,7 +109,6 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
-    pg (0.11.0)
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     rack (1.2.3)
@@ -195,9 +195,9 @@ DEPENDENCIES
   haml-rails
   launchy
   machinist (>= 2.0.0.beta1)
+  mysql2 (~> 0.2.7)
   nokogiri
   paperclip
-  pg
   rails (= 3.0.3)
   rails-latex!
   rspec-rails
