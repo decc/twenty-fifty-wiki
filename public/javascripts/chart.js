@@ -81,7 +81,7 @@ ScatterPlot = function(input) {
     this.maximumDataValueY = input.maxY || max_ignoring_unknowns(this.yData.flatten());
     this.maximumDataValueX = input.maxX || max_ignoring_unknowns(this.xData.flatten());
 
-    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([25,this.width-50]).nice();
+    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([50,this.width-60]).nice();
     var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-45,45]).nice();
     var x_not_known = screenX.range()[1]+20;
     var y_not_known = screenY.range()[1]-20;
@@ -103,13 +103,13 @@ ScatterPlot = function(input) {
         
         // y-axis
         ticks = screenY.ticks(10);
-        x = screenX.range()[0] - 10;
+        x = screenX.range()[0] - 5;
         for(var i=0,l=ticks.length;i<l;i++) {
           y = screenY(ticks[i]);
           this.paper.line(screenX.range()[0],y,screenX.range()[1],y).attr({stroke:"#ccc",'stroke-dasharray':'.'});
-          this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+          this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000",'text-anchor':'end'});
         }
-        var ytitle = this.paper.text(x-10,(screenY.range()[0] + screenY.range()[1])/2,this.yTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
+        var ytitle = this.paper.text(x-35,(screenY.range()[0] + screenY.range()[1])/2,this.yTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
         ytitle.rotate(-90);
 
         // not known on y-axis
