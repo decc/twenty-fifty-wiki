@@ -60,115 +60,63 @@ ScatterPlot = function(input) {
 
     this.paper = Raphael(this.location, this.width, this.height);
     
-    var space = function(number) {
-      return number / 10;
-      // if( number <= 1) { 
-      //   return 0.1;
-      // } else if (number<= 10) {
-      //   return 1.0;
-      // } else if (number<= 20) {
-      //     return 2.0;
-      // } else if (number <= 50 ) {
-      //   return 5.0;       
-      // } else if (number <= 100 ) {
-      //   return 10.0;
-      // } else if (number <= 200 ) {
-      //   return 20.0;
-      // } else if (number <= 500 ) {
-      //   return 50.0;
-      // } else if (number <= 1000 ) {
-      //   return 100.0;
-      // } else if (number <= 2000 ) {
-      //   return 200.0;
-      // } else if (number <= 5000 ) {
-      //   return 500.0;
-      // } else {
-      //   return number / 10;
-      // }
-    };
-    
-    var rounded_max = function(number) {
-      var exp = Math.pow(10,Math.floor(Math.log(number) / Math.log(10)));
-      return Math.ceil(number / exp) * exp;
+    max_ignoring_unknowns = function(array) {
+      if(array.length == 0) {
+        return 1;
+      }
+      var max = array[0], n = 0;
+      for(i=0,l=array.length;i<l;i++) {
+        n = array[i];
+        if( (n != "?") && (n > max) ) {
+          max = n
+        }
+      }
+      if(max == "?") {
+        return 1;
+      }
+      return max;
     }
-    
-    var x_max = rounded_max(Math.max.apply(Math, this.xData.flatten()));
-    var x_space = space(x_max);
-    var y_max = rounded_max(Math.max.apply(Math, this.yData.flatten()));
-    var y_space = space(y_max);
     
     this.minimumDataValueX = input.minX || 0;
     this.minimumDataValueY = input.minY || 0;
-    this.maximumDataValueY = input.maxY || y_max;
-    this.maximumDataValueX = input.maxX || x_max;
-    this.xGridSpace = input.xGridSpace || x_space;
-    this.yGridSpace = input.yGridSpace || y_space;
+    this.maximumDataValueY = input.maxY || max_ignoring_unknowns(this.yData.flatten());
+    this.maximumDataValueX = input.maxX || max_ignoring_unknowns(this.xData.flatten());
 
+    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([25,this.width-50]).nice();
+    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-45,45]).nice();
+    var x_not_known = screenX.range()[1]+20;
+    var y_not_known = screenY.range()[1]-20;
+    
     this.buildGrid = function() {
-        var xLabelHeight = 40;
-        var yLabelWidth = 50;
+        // x-axis
+        ticks = screenX.ticks(10);
+        y = screenY.range()[0] + 10;
+        for(var i=0,l=ticks.length;i<l;i++) {
+          x = screenX(ticks[i]);
+          this.paper.line(x,screenY.range()[0],x,screenY.range()[1]).attr({stroke:"#ccc",'stroke-dasharray':'.'});
+          this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        }
+        this.paper.text((screenX.range()[0] + screenX.range()[1])/2, y + 10, this.xTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
 
-        var x = yLabelWidth;
-        var y = 20;
-        var width = this.width - yLabelWidth - 20;
-        var height = this.height - xLabelHeight - y;
-        var numberOfHorizontalGridLines = ((this.maximumDataValueX-this.minimumDataValueX) / this.xGridSpace);
-        var numberOfVerticalGridLines = ((this.maximumDataValueY-this.minimumDataValueY) / this.yGridSpace);
+        // not known on x-axis
+        this.paper.line(x_not_known,screenY.range()[0],x_not_known,screenY.range()[1]).attr({stroke:"#ccc",'stroke-dasharray':'.'});
+        this.paper.text(x_not_known,y,"?").attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        
+        // y-axis
+        ticks = screenY.ticks(10);
+        x = screenX.range()[0] - 10;
+        for(var i=0,l=ticks.length;i<l;i++) {
+          y = screenY(ticks[i]);
+          this.paper.line(screenX.range()[0],y,screenX.range()[1],y).attr({stroke:"#ccc",'stroke-dasharray':'.'});
+          this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        }
+        var ytitle = this.paper.text(x-10,(screenY.range()[0] + screenY.range()[1])/2,this.yTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
+        ytitle.rotate(-90);
 
-        this.paper.drawGrid(x, y, width, height, numberOfHorizontalGridLines, numberOfVerticalGridLines, "#ccc");
-
-        var drawXLabels = function() {
-            for (var index = 0, length = numberOfHorizontalGridLines; index <= length; index++) {
-                var labelTextX = (index * this.xGridSpace)+this.minimumDataValueX;
-                var labelPositionX = yLabelWidth + (index * width / numberOfHorizontalGridLines);
-                var labelCentreX = this.height - (xLabelHeight * 0.75);
-
-                this.paper.text(labelPositionX, labelCentreX, labelTextX).attr({
-                    "font": '10px "Arial"',
-                    stroke: "none",
-                    fill: "#000"
-                });
-            }
-        }.call(this);
-
-        var drawXTitle = function() {
-            this.paper.text(yLabelWidth + (width / 2), this.height - (xLabelHeight / 4), this.xTitle).attr({
-                "font": '10px "Arial"',
-                stroke: "none",
-                fill: "#000"
-            });
-        }.call(this);
-
-        var drawYLabels = function() {
-            for (var index = 0, length = numberOfVerticalGridLines; index <= length; index++) {
-                var labelTextY = (index * this.yGridSpace)+this.minimumDataValueY;
-                var labelPositionY = height - (index * height / numberOfVerticalGridLines) + 20;
-
-                // Use Rapha&#195;&#171;l to draw the label text onto the canvas
-                this.paper.text(yLabelWidth*0.9, labelPositionY, labelTextY).attr({
-                    "font": '10px "Arial"',
-                    stroke: "none",
-                    fill: "#000",
-                    'text-anchor': "end"
-                });
-            }
-        }.call(this);
-
-        var drawYTitle = function() {
-            var YTitle = this.paper.text(yLabelWidth * 0.25, (height / 2) + 20, this.yTitle).attr({
-                "font": '10px "Arial"',
-                stroke: "none",
-                fill: "#000"
-            });
-            YTitle.rotate( - 90);
-        }.call(this);
-
-        return {
-            x: x,
-            y: y,
-            width: width,
-            height: height
-        };
+        // not known on y-axis
+        this.paper.line(screenX.range()[0],y_not_known,screenX.range()[1],y_not_known).attr({stroke:"#ccc",'stroke-dasharray':'.'});
+        this.paper.text(x,y_not_known,"?").attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        
     };
     
     this.shape = function(x,y,label,color) {
@@ -184,11 +132,19 @@ ScatterPlot = function(input) {
     };
     
     this.chartX = function(x){
-      return this.grid.x + ( (x - this.minimumDataValueX) * this.grid.width / (this.maximumDataValueX - this.minimumDataValueX));
+        if(x == "?") {
+          return x_not_known;
+        } else {
+          return screenX(x);
+        }
     };
     
     this.chartY = function(y) {
-      return this.grid.y + this.grid.height - ( (y - this.minimumDataValueY) * this.grid.height / (this.maximumDataValueY - this.minimumDataValueY));
+      if(y == "?") {
+        return y_not_known;
+      } else {
+        return screenY(y);
+      }
     };
     
     this.pointShape = function(_x,_y,label,color) {
