@@ -1,8 +1,9 @@
+myqsl2/
 .bundle
 db/*.sqlite3
 log/*.log
+log/*.lck
 tmp/
 .sass-cache/
 _darcs/
 solr/
-mysql2/
