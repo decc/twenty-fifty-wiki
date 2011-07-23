@@ -1,7 +1,7 @@
 #bottomleft
   %h2 Other sets of cost data
   #costcategorylist    
-    - CostCategory.order('title ASC').all.each do |cc|
+    - CostCategory.visible.order('title ASC').all.each do |cc|
       = link_to cc.label, cc
     
 #bottomright
