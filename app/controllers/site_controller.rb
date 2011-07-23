@@ -9,9 +9,11 @@ class SiteController < ApplicationController
   end
   
   def home
-    home_page = Page.except(:order).first
-    return redirect_to home_page if home_page
-    redirect_to new_page_url('page[title]'=>'Home page')
+    if AppConfig.home_page_id && Page.exists?(AppConfig.home_page_id)
+      redirect_to Page.find(AppConfig.home_page_id)
+    else
+      redirect_to new_page_url('page[title]'=>'Home page')
+    end
   end
   
   def recent
