@@ -112,9 +112,8 @@ module ApplicationHelper
     labels = costs.map { |c| "#{(c.label.blank? ? c.cost_source.label : c.label)} (#{c.send(label_tail)})" }.to_json 
     x_data = costs.map(&(x_axis_paramater.to_sym)).to_json
     y_data = costs.map(&(y_axis_parameter.to_sym)).to_json
-    color_id = costs.map(&:cost_source_id).to_json
     tail = x_axis_paramater == "valid_in_year_normalised" ? ",1970,2050,10" : ""
-    raw "c = plotData('chart',#{ids},#{labels},#{x_data},#{y_data},#{color_id},#{axis_label(x_axis_paramater)},#{axis_label(y_axis_parameter)}#{tail});"
+    raw "c = plotData('chart',#{ids},#{labels},#{x_data},#{y_data},#{axis_label(x_axis_paramater)},#{axis_label(y_axis_parameter)}#{tail});"
   end
   
   def update_field(field,title,value=title,extra_js="")

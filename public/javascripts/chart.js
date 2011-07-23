@@ -55,8 +55,7 @@ ScatterPlot = function(input) {
     this.height = input.height || "";
     this.location = input.location;
     
-    this.colors = input.colors || ["#4572A7","#AA4643","#89A54E","#80699B","#3D96AE","#DB843D","#92A8CD","#A47D7C","#B5CA92"];
-    this.colorIds = input.colorIds || [];
+    this.colors = input.colors || d3.scale.category20();
 
     this.paper = Raphael(this.location, this.width, this.height);
     
@@ -213,7 +212,7 @@ ScatterPlot = function(input) {
     
     this.drawPoints = function() {
         for (var index = 0, length = this.xData.length; index < length; index++) {
-          var s = this.shape(this.xData[index],this.yData[index],this.labels[index],this.colors[this.colorIds[index] % this.colors.length]);
+          var s = this.shape(this.xData[index],this.yData[index],this.labels[index],this.colors(index));
           this.setupShape(s,this.ids[index]);
           points_as_array.push(s);
         }
@@ -223,7 +222,7 @@ ScatterPlot = function(input) {
     this.drawPoints();
 };
 
-function plotData(locationId, ids, labels, xValues, yValues, colorIds, xTitle, yTitle, minX, maxX, xGridSpace) {
+function plotData(locationId, ids, labels, xValues, yValues, xTitle, yTitle, minX, maxX, xGridSpace) {
     var location = document.getElementById(locationId);
     var divHeight = location.clientHeight;
     var divWidth = location.clientWidth;
@@ -233,7 +232,6 @@ function plotData(locationId, ids, labels, xValues, yValues, colorIds, xTitle, y
         xTitle: xTitle,
         xData: xValues,
         yData: yValues,
-        colorIds: colorIds,
         yTitle: yTitle,
         height: divHeight,
         width: divWidth,
