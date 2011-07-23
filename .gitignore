@@ -5,4 +5,4 @@ tmp/
 .sass-cache/
 _darcs/
 solr/
-mysql2
+mysql2/

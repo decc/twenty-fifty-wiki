@@ -109,6 +109,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.11.0)
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     rack (1.2.3)
@@ -198,6 +199,7 @@ DEPENDENCIES
   mysql2 (~> 0.2.7)
   nokogiri
   paperclip
+  pg
   rails (= 3.0.3)
   rails-latex!
   rspec-rails
