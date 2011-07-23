@@ -51,6 +51,7 @@ Setup:
   heroku addons:add sendgrid:free
   heroku addons:add websolr
   heroku addons:add cron:daily
+  heroku addons:add custom_domains
   # Now transfer the code up to heroku
   git push heroku master
   # Now setup the database
