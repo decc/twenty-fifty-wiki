@@ -16,9 +16,7 @@ class Category < ActiveRecord::Base
     
   # Validations
   validates_uniqueness_of :title, :case_sensitive => false
-  
-  default_scope order('LOWER(categories.title) ASC')
-  
+    
   def ast
     @ast ||= SokclothParser.parse(content)
   end

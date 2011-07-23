@@ -2,7 +2,7 @@ module CategoryMembershipExtension
   def self.included(base)
     base.instance_eval do
       has_many :category_memberships, :as => :target, :dependent => :destroy
-      has_many :categories, :through => :category_memberships, :uniq => true #, :order => 'LENGTH(category_memberships.dependency) ASC'
+      has_many :categories, :through => :category_memberships, :uniq => true
   
       after_save :update_category_membership_if_changed
     end
