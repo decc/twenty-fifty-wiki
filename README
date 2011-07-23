@@ -61,6 +61,7 @@ Setup:
 Other useful commands:
    heroku run rake sunspot:reindex # if you upload a new database, this will get the search in sync
    heroku domains:add 2050-wiki.greenonblack.com # to setup with a new url
+   heroku info
   
 RUNNING ON EC2
 
