@@ -58,6 +58,10 @@ Setup:
   # Now start the app running
   heroku ps:scale web=1 worker=1
   
+Other useful commands:
+   heroku run rake sunspot:reindex # if you upload a new database, this will get the search in sync
+   heroku domains:add 2050-wiki.greenonblack.com # to setup with a new url
+  
 RUNNING ON EC2
 
 #!/bin/bash
