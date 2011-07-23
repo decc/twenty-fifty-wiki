@@ -60,35 +60,63 @@ ScatterPlot = function(input) {
 
     this.paper = Raphael(this.location, this.width, this.height);
     
+    max_ignoring_unknowns = function(array) {
+      if(array.length == 0) {
+        return 1;
+      }
+      var max = array[0], n = 0;
+      for(i=0,l=array.length;i<l;i++) {
+        n = array[i];
+        if( (n != "?") && (n > max) ) {
+          max = n
+        }
+      }
+      if(max == "?") {
+        return 1;
+      }
+      return max;
+    }
+    
     this.minimumDataValueX = input.minX || 0;
     this.minimumDataValueY = input.minY || 0;
-    this.maximumDataValueY = input.maxY || Math.max.apply(Math, this.yData.flatten());
-    this.maximumDataValueX = input.maxX || Math.max.apply(Math, this.xData.flatten());
+    this.maximumDataValueY = input.maxY || max_ignoring_unknowns(this.yData.flatten());
+    this.maximumDataValueX = input.maxX || max_ignoring_unknowns(this.xData.flatten());
 
-    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([30,this.width-30]).nice();
-    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-30,30]).nice();
-
+    var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([25,this.width-50]).nice();
+    var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-45,45]).nice();
+    var x_not_known = screenX.range()[1]+20;
+    var y_not_known = screenY.range()[1]-20;
+    
     this.buildGrid = function() {
         // x-axis
         ticks = screenX.ticks(10);
         y = screenY.range()[0] + 10;
         for(var i=0,l=ticks.length;i<l;i++) {
           x = screenX(ticks[i]);
-          this.paper.line(x,screenY.range()[0],x,screenY.range()[1]).attr({stroke:"#ccc"});
+          this.paper.line(x,screenY.range()[0],x,screenY.range()[1]).attr({stroke:"#ccc",'stroke-dasharray':'.'});
           this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
         }
         this.paper.text((screenX.range()[0] + screenX.range()[1])/2, y + 10, this.xTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
+
+        // not known on x-axis
+        this.paper.line(x_not_known,screenY.range()[0],x_not_known,screenY.range()[1]).attr({stroke:"#ccc",'stroke-dasharray':'.'});
+        this.paper.text(x_not_known,y,"?").attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
         
         // y-axis
         ticks = screenY.ticks(10);
         x = screenX.range()[0] - 10;
         for(var i=0,l=ticks.length;i<l;i++) {
           y = screenY(ticks[i]);
-          this.paper.line(screenX.range()[0],y,screenX.range()[1],y).attr({stroke:"#ccc"});
+          this.paper.line(screenX.range()[0],y,screenX.range()[1],y).attr({stroke:"#ccc",'stroke-dasharray':'.'});
           this.paper.text(x,y,ticks[i]).attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
         }
         var ytitle = this.paper.text(x-10,(screenY.range()[0] + screenY.range()[1])/2,this.yTitle).attr({font: '10px "Arial"', stroke: "none", fill: "#000"});
         ytitle.rotate(-90);
+
+        // not known on y-axis
+        this.paper.line(screenX.range()[0],y_not_known,screenX.range()[1],y_not_known).attr({stroke:"#ccc",'stroke-dasharray':'.'});
+        this.paper.text(x,y_not_known,"?").attr({font: '10px "Arial"',stroke: "none", fill: "#000"});
+        
     };
     
     this.shape = function(x,y,label,color) {
@@ -104,13 +132,19 @@ ScatterPlot = function(input) {
     };
     
     this.chartX = function(x){
-//      return this.grid.x + ( (x - this.minimumDataValueX) * this.grid.width / (this.maximumDataValueX - this.minimumDataValueX));
-        return screenX(x);
+        if(x == "?") {
+          return x_not_known;
+        } else {
+          return screenX(x);
+        }
     };
     
     this.chartY = function(y) {
-//      return this.grid.y + this.grid.height - ( (y - this.minimumDataValueY) * this.grid.height / (this.maximumDataValueY - this.minimumDataValueY));
+      if(y == "?") {
+        return y_not_known;
+      } else {
         return screenY(y);
+      }
     };
     
     this.pointShape = function(_x,_y,label,color) {
