@@ -65,14 +65,15 @@ ScatterPlot = function(input) {
       }
       var max = array[0], n = 0;
       for(i=0,l=array.length;i<l;i++) {
-        n = array[i];
-        if( (n != "?") && (n > max) ) {
+        n = parseFloat(array[i]);
+        if( (n != NaN) && (n > max) ) {
           max = n
         }
       }
       if(max == "?") {
         return 1;
       }
+      console.log(['max',max]);
       return max;
     }
     
