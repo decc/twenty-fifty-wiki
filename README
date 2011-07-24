@@ -52,6 +52,7 @@ Setup:
   heroku addons:add websolr
   heroku addons:add cron:daily
   heroku addons:add custom_domains
+  heroku addons:add pgbackups:basic
   # Now transfer the code up to heroku
   git push heroku master
   # Now setup the database
@@ -63,6 +64,7 @@ Other useful commands:
    heroku run rake sunspot:reindex # if you upload a new database, this will get the search in sync
    heroku domains:add 2050-wiki.greenonblack.com # to setup with a new url
    heroku info
+   pgbackups:capture # Make a backup of the database
   
 RUNNING ON EC2
 
