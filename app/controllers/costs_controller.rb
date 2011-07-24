@@ -51,6 +51,13 @@ class CostsController < ApplicationController
     render :bulk_update
   end
   
+  def parse_failures
+    @costs = Cost.all
+    @costs.delete_if do |cost|
+      !cost.problem_parsing_data?
+    end
+  end
+  
   private
   
   def title

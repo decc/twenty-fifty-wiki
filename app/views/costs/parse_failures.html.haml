@@ -1,0 +1,41 @@
+#topbit
+  %h1 Costs that have not parsed correctly
+      
+#middlebit
+  %table
+    %tr
+      %th{:colspan => 2} &nbsp;
+      %th{:colspan => 6} Technologies
+      %th{:colspan => 3} Fuels
+    %tr
+      %th.label
+      %th.valid_in_year Valid in year
+      %th.capital_cost Capital cost 
+      %th.operating_cost Operating cost excluding fuel
+      %th.output Output
+      %th.fuel_cost Fuel cost
+      %th.valid_for_quantity_of_fuel Fuel limit
+
+      %th
+      - @costs.each do |cost|
+        %tr[cost]
+          %td.label
+            = link_to "#{cost.cost_category.label} #{cost.label}", cost
+          %td.valid_in_year 
+            - unless cost.parsed_properly?(cost.valid_in_year,cost.valid_in_year_normalised)
+              = cost.valid_in_year
+          %td.capital_cost
+            - unless cost.parsed_properly?(cost.capital,cost.capital_normalised)
+              = cost.capital
+          %td.operating_cost
+            - unless cost.parsed_properly?(cost.operating,cost.operating_normalised)
+              = cost.operating
+          %td.output
+            - unless cost.parsed_properly?(cost.output,cost.output_over_capacity)
+              = cost.output
+          %td.fuel_cost
+            - unless cost.parsed_properly?(cost.fuel,cost.fuel_normalised)
+              = cost.fuel
+          %td.valid_for_quantity_of_fuel
+            - unless cost.parsed_properly?(cost.valid_for_quantity_of_fuel,cost.valid_for_quantity_of_fuel_normalised)
+              = cost.valid_for_quantity_of_fuel

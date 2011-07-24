@@ -135,8 +135,9 @@ class Cost < ActiveRecord::Base
   alias :fuel_normalised :fuel_cost_normalised
   
   def valid_in_year_normalised
+    return "?" unless valid_in_year
     normalised = valid_in_year.split("-").map { |y| y.strip }
-    return [2010] unless normalised.first
+    return "?" unless normalised.first
     normalised[0] = "2010" if normalised.first.downcase == "foak"
     normalised[0] = "2050" if normalised.first.downcase == "noak"
     if normalised.size == 1
@@ -147,6 +148,8 @@ class Cost < ActiveRecord::Base
     end
     normalised[0]= "#{"2010"[0,4-normalised.first.size]}#{normalised.first}" if normalised.first.size < 4
     normalised[1] = "#{normalised.first[0,4-normalised.last.size]}#{normalised.last}" if normalised.last.size < 4
+    return "?" unless normalised[0] =~ /\d\d\d\d/
+    return "?" if normalised[1] && normalised[1] !~ /\d\d\d\d/
     normalised.map(&:to_i)    
   end
   
@@ -164,7 +167,6 @@ class Cost < ActiveRecord::Base
   end
   
   def self.csv_load(meta,headers,row)
-    p meta,headers,row
     id_index = headers.index('id')
     if id_index && row[id_index]
       cost = Cost.find(row[id_index])
@@ -200,6 +202,24 @@ class Cost < ActiveRecord::Base
   
   def url=(ignore)
     # ignore
+  end
+  
+  def parsed_properly?(before_parse,after_parse)
+    return true if before_parse.blank?
+    return false if after_parse == nil
+    return false if after_parse == "?"
+    true
+  end
+  
+  def problem_parsing_data?
+    not (
+      parsed_properly?(valid_in_year,valid_in_year_normalised) &&
+      parsed_properly?(output,output_over_capacity) &&
+      parsed_properly?(operating,operating_cost_normalised) &&
+      parsed_properly?(capital,capital_cost_normalised) &&
+      parsed_properly?(fuel,fuel_cost_normalised) &&
+      parsed_properly?(valid_for_quantity_of_fuel,valid_for_quantity_of_fuel_normalised)
+    )
   end
   
 end

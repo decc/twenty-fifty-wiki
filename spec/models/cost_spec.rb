@@ -100,7 +100,7 @@ describe Cost do
     c.valid_in_year = " 2010- 2050"
     c.valid_in_year_normalised.should == [2010,2050]
     c.valid_in_year = ""
-    c.valid_in_year_normalised.should == [2010]
+    c.valid_in_year_normalised.should == "?"
     c.valid_in_year = "FOAK"
     c.valid_in_year_normalised.should == [2010]
     c.valid_in_year = "NOAK"
@@ -117,6 +117,42 @@ describe Cost do
     c.valid_in_year_normalised.should == [2010,2020]
     c.valid_in_year = "2040s-80s"
     c.valid_in_year_normalised.should == [2040,2090]
+  end
+  
+  it "should be able to report whether it has any data that it couldn't parse" do
+    c = Cost.new
+    cc = CostCategory.new
+    cc.default_capital_unit = "£(2010)bn/GW"
+    cc.default_operating_unit = "£(2010)bn/GW"
+    cc.default_fuel_unit = "£(2010)/PJ"
+    cc.default_valid_for_quantity_of_fuel_unit = "PJ"
+    c.cost_category = cc
+    
+    c.problem_parsing_data?.should == false
+    c.valid_in_year = "the thirties"
+    c.problem_parsing_data?.should == true
+    c.valid_in_year = "30"
+    c.problem_parsing_data?.should == false
+    c.output = " blah "
+    c.problem_parsing_data?.should == true
+    c.output = "30%"
+    c.problem_parsing_data?.should == false
+    c.operating = "blah"
+    c.problem_parsing_data?.should == true
+    c.operating = "£(2009)1/kW"
+    c.problem_parsing_data?.should == false
+    c.capital = "blah"
+    c.problem_parsing_data?.should == true
+    c.capital = "£(2009)1/kW"
+    c.problem_parsing_data?.should == false
+    c.fuel = "blah"
+    c.problem_parsing_data?.should == true
+    c.fuel = "€(2001)50/MWh"
+    c.problem_parsing_data?.should == false
+    c.valid_for_quantity_of_fuel = "blah"
+    c.problem_parsing_data?.should == true
+    c.valid_for_quantity_of_fuel = "50 MWh"
+    c.problem_parsing_data?.should == false
   end
   
 end

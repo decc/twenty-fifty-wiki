@@ -29,6 +29,7 @@ Soks::Application.routes.draw do
     collection do
       get 'bulk_update'
       post 'bulk'
+      get 'parse_failures'
     end
   end
   
