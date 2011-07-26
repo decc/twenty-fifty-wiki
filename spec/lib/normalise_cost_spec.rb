@@ -144,4 +144,14 @@ describe NormaliseCost do
     NormaliseCost.new("£(2009) 1000/kW plus £(2009) 25/MWh",0.5).normalise.map(&:to_f).should == [ 3.975890194404359e-06]
     NormaliseCost.new("£M(2009) 3-10 /MW plus £M(2009) 3-10 /kWh").to_unit('€',nil,2010).should == "€M(2010)/MW"
   end
+  
+  it "should deal with tCO2 and tCO2e as cost types" do
+    NormaliseCost.new("£M(2010)10/MtCO2e").convert_to("£(2010)/tCO2e").map(&:to_f).should == [10]
+    NormaliseCost.new("£m(2000)44/MTCO2").convert_to("£(2010)/tCO2e").map(&:to_f).should == [56.98891308]
+  end
+  
+  it "should deal with tonne as a unit" do
+    NormaliseCost.new("£M(2010)10/Mtonne").convert_to("£(2010)/tonne").map(&:to_f).should == [10]
+  end
+  
 end
