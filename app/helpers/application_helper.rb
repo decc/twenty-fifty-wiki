@@ -103,17 +103,20 @@ module ApplicationHelper
   def cost_category_chart
     x_axis_paramater = "#{params[:chart_x] || default_chart_x_axis_parameter}_normalised"
     y_axis_parameter = "#{params[:chart_y] || default_chart_y_axis_parameter}_normalised"
+    range = x_axis_paramater == "valid_in_year_normalised" ? ",1970,2050" : ""
+    label_tail = x_axis_paramater == "valid_in_year_normalised" ? "valid_for_quantity_of_fuel" : "valid_in_year"
     return nil unless valid_chart_parameters.include?(x_axis_paramater) 
     return nil unless valid_chart_parameters.include?(y_axis_parameter)
     costs = @cost_category.costs.sort_by { |c| c.order_for_chart }
-    # costs.delete_if { |c| c.send(x_axis_paramater) == "?" || c.send(y_axis_parameter) == "?"}
-    ids = costs.map(&:id).to_json
-    label_tail = x_axis_paramater == "valid_in_year_normalised" ? "valid_for_quantity_of_fuel" : "valid_in_year"
-    labels = costs.map { |c| "#{(c.label.blank? ? c.cost_source.label : c.label)} (#{c.send(label_tail)})" }.to_json 
-    x_data = costs.map(&(x_axis_paramater.to_sym)).to_json
-    y_data = costs.map(&(y_axis_parameter.to_sym)).to_json
-    tail = x_axis_paramater == "valid_in_year_normalised" ? ",1970,2050,10" : ""
-    raw "c = plotData('chart',#{ids},#{labels},#{x_data},#{y_data},#{axis_label(x_axis_paramater)},#{axis_label(y_axis_parameter)}#{tail});"
+    data = costs.map do |c|
+      { 
+        'id' => c.id,
+        'label' => "#{(c.label.blank? ? c.cost_source.label : c.label)} (#{c.send(label_tail)})",
+        'x' => c.send(x_axis_paramater),
+        'y' => c.send(y_axis_parameter),
+      }
+    end.to_json
+    raw "c = plotData('chart',#{axis_label(x_axis_paramater)},#{axis_label(y_axis_parameter)},#{data}#{range});"
   end
   
   def update_field(field,title,value=title,extra_js="")
