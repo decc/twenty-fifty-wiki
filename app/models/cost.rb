@@ -156,16 +156,7 @@ class Cost < ActiveRecord::Base
   def valid_for_quantity_of_fuel_normalised
     convert(valid_for_quantity_of_fuel,cost_category.default_valid_for_quantity_of_fuel_unit)
   end
-  
-  def order_for_chart
-    c = capital_cost_normalised
-    o = operating_cost_normalised
-    return 0 unless c && o
-    return 0 if c == "?"
-    return 0 if o == "?"
-    (c.size == 1 ? 0 : c.last-c.first) * (o.size == 1 ? 0 : -(o.last-o.first)).to_f
-  end
-  
+    
   def self.csv_load(meta,headers,row)
     id_index = headers.index('id')
     if id_index && row[id_index]
