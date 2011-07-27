@@ -73,7 +73,6 @@ ScatterPlot = function(input) {
       if(max == "?") {
         return 1;
       }
-      console.log(['max',max]);
       return max;
     }
     
