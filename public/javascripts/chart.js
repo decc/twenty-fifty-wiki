@@ -50,7 +50,24 @@ ScatterPlot = function(input) {
     this.location = input.location;
     this.colors = input.colors || d3.scale.category20();
     this.paper = Raphael(this.location, this.width, this.height);
-            
+    
+    // Sort the data
+    this.data = this.data.sortBy(function(d){
+      if(d.x.length == 2) {
+        w = d.x[1] - d.x[0];
+      } else {
+        w = 1;
+      }
+      if(d.y.length == 2) {
+        h = d.y[1] - d.y[0];
+      } else {
+        h = 1;
+      }
+      console.log([d.id,(w*h)]);
+      return (w*h);
+    }).reverse();
+    
+    // Work ou tthe maximum ranges
     var x_max = 0, y_max = 0, x = 0, y = 0, d = null;
     for(i=0,l=this.data.length;i<l;i++) {
       d = this.data[i];
