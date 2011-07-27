@@ -82,6 +82,13 @@ ScatterPlot = function(input) {
     this.maximumDataValueY = input.maxY || max_ignoring_unknowns(this.yData.flatten());
     this.maximumDataValueX = input.maxX || max_ignoring_unknowns(this.xData.flatten());
 
+    if(this.maximumDataValueX == 0) {
+      this.maximumDataValueX = 10;
+    }
+
+    if(this.maximumDataValueY == 0) {
+      this.maximumDataValueY = 10;
+    }
     var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([50,this.width-60]).nice();
     var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-45,45]).nice();
     var x_not_known = screenX.range()[1]+20;
