@@ -170,6 +170,11 @@ table#cost_points td {
   padding-right: 2px;
 }
 
+table#cost_points  td.color {
+  width: 10px;
+  padding-right: 0px;
+}
+
 table#cost_points {
   padding: 0px;
   margin-left: 0px;

@@ -9,7 +9,6 @@
   #lefthalf
     #graph
       #chart
-      %script= cost_category_chart
       .switch
         - unless @cost_category.is_a_fuel?
           - if params[:chart_x] == "valid_in_year"
@@ -22,7 +21,7 @@
     #structured_content
       %table#cost_points
         %tr
-          %th.label{:rowspan => 2} Data point
+          %th.label{:rowspan => 2, :colspan => 2} Data point
           %th.valid{:rowspan => 2} Valid in
           - if @cost_category.is_a_fuel?
             %th.fuel_cost Cost
@@ -40,6 +39,7 @@
             %td.operating_cost= @cost_category.default_operating_unit
         - for cost in @cost_category.costs
           %tr[cost]
+            %td.color &nbsp;
             %td.label= link_to (cost.label.blank? ? cost.cost_source.label : cost.label), cost
             %td.valid= cost.valid_in_year
             - if @cost_category.is_a_fuel?
@@ -51,6 +51,7 @@
             %td.source= link_to cost.cost_source.label, cost.cost_source
         - unless @cost_category.costs.empty?
           %tr.range
+            %td.color
             %td Range
             %td= @cost_category.valid_in_year_normalised_range.try(:join,"-")
             - if @cost_category.is_a_fuel?
@@ -74,5 +75,7 @@
       = link_to "Add a cost for #{@cost_category.label}",  new_cost_category_cost_url(@cost_category)
       
   .clear
+
+  %script= cost_category_chart
 
 #bottombit= render 'bottombit'

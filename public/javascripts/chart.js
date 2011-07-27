@@ -89,6 +89,7 @@ ScatterPlot = function(input) {
     if(this.maximumDataValueY == 0) {
       this.maximumDataValueY = 10;
     }
+    
     var screenX = d3.scale.linear().domain([this.minimumDataValueX, this.maximumDataValueX]).range([50,this.width-60]).nice();
     var screenY = d3.scale.linear().domain([this.minimumDataValueY, this.maximumDataValueY]).range([this.height-45,45]).nice();
     var x_not_known = screenX.range()[1]+20;
@@ -200,7 +201,7 @@ ScatterPlot = function(input) {
       return new Point(shape, text);
     };
         
-    this.setupShape = function(s,id) {
+    this.setupShape = function(s,id,color) {
       s.technology_id = "cost_"+id;
       s.url = "/costs/"+id;
       myPoints[s.technology_id] = s;
@@ -216,12 +217,16 @@ ScatterPlot = function(input) {
         window.location = s.url;
         // $$("#"+this.technology_id+" td.label a")[0].simulate('click');
       });
+      table_row = $(s.technology_id);
+      if(table_row != null) {
+        table_row.down('td.color').setStyle({'background-color':color});
+      }
     };
     
     this.drawPoints = function() {
         for (var index = 0, length = this.xData.length; index < length; index++) {
           var s = this.shape(this.xData[index],this.yData[index],this.labels[index],this.colors(index));
-          this.setupShape(s,this.ids[index]);
+          this.setupShape(s,this.ids[index],this.colors(index));
           points_as_array.push(s);
         }
     };
