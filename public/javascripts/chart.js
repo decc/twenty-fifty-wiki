@@ -237,7 +237,7 @@ ScatterPlot = function(input) {
       });
       table_row = $(s.technology_id);
       if(table_row != null) {
-        table_row.down('td.color').setStyle({'background-color':color.toUpperCase()});
+        table_row.down('td.color').setStyle({backgroundColor:color.toUpperCase()});
       }
     };
     
