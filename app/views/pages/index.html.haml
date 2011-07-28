@@ -1,6 +1,9 @@
-%h1 A-Z index of pages on this site
-= render 'site/master_links'
-= render 'site/sub_indexes'
+#centre
+  %h1 A-Z index of pages on this site
+  = render 'site/sub_indexes'
+  
+  #content
+    - cache do 
+      = link_list @pages
 
-- cache do 
-  = link_list @pages
+#right= render 'pages/right_bar'

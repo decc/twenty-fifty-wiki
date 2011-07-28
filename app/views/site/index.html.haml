@@ -1,5 +1,8 @@
-%h1 A-Z index of pages, pictures and users on this site
-= render 'master_links'
-= render 'sub_indexes'
+#centre
+  %h1 A-Z index of the 2050 Wiki
+  = render 'sub_indexes'
 
-= link_list @titles.map(&:target)
+  #content
+    = link_list @titles.map(&:target)
+    
+#right= render 'pages/right_bar'    
