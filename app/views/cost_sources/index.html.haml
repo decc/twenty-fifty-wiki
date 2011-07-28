@@ -1,5 +1,5 @@
 %h1 All cost sources
 
 %ul
-  - @cost_sources.each do |cost_source|
+  - @cost_sources.visible.order(:title).all.each do |cost_source|
     %li= link_to cost_source.label, cost_source
