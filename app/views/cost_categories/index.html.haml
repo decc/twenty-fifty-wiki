@@ -1,5 +1,9 @@
-%h1 All Cost Categories
+#centre
+  %h1 All Cost Categories
 
-%ul
-  - @cost_categories.order(:title).visible.each do |category|
-    %li= link_to category.label, category
+  #content
+    %ul
+      - @cost_categories.order(:title).visible.each do |category|
+        %li= link_to category.label, category
+        
+#right= render 'pages/right_bar'

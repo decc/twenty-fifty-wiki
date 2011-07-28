@@ -1,5 +1,9 @@
-%h1 All cost data points
-
-%ul
-  - @costs.order(:title).visible.each do |cost|
-    %li= link_to cost.title, cost
+#centre
+  %h1 All cost data points
+  
+  #content
+    %ul
+      - @costs.order(:title).visible.each do |cost|
+        %li= link_to cost.title, cost
+  
+#right= render 'pages/right_bar'

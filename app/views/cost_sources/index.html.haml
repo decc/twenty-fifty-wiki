@@ -1,5 +1,9 @@
-%h1 All cost sources
+#centre
+  %h1 All cost sources
 
-%ul
-  - @cost_sources.visible.order(:title).all.each do |cost_source|
-    %li= link_to cost_source.label, cost_source
+  #content
+    %ul
+      - @cost_sources.visible.order(:title).all.each do |cost_source|
+        %li= link_to cost_source.label, cost_source
+
+#right= render 'pages/right_bar'
