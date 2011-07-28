@@ -63,7 +63,6 @@ ScatterPlot = function(input) {
       } else {
         h = 1;
       }
-      console.log([d.id,(w*h)]);
       return (w*h);
     }).reverse();
     
