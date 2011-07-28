@@ -273,6 +273,10 @@ textarea#cost_category_content, textarea#cost_category_cost_boilerplate {
   text-align: right;
 }
 
+.cost_form form input[type=text] {
+  width: 100%;
+}
+
 tr.tall td.label {
   vertical-align: top;
 }
@@ -289,4 +293,32 @@ textarea#bulk_upload_form {
 
 table.cost_detail td.normalised {
   color: #ccc;
+}
+
+div.autocomplete {
+  margin:0px;  
+  padding:0px;  
+  width:250px;
+  background:#fff;
+  border:1px solid #888;
+  position:absolute;
+}
+
+div.autocomplete ul {
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+}
+
+div.autocomplete ul li.selected { 
+  background-color:#ffb;
+}
+
+div.autocomplete ul li {
+  margin:0;
+  padding:2px;
+  height:32px;
+  display:block;
+  list-style-type:none;
+  cursor:pointer;
 }

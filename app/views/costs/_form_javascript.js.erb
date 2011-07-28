@@ -36,5 +36,9 @@ document.observe('dom:loaded', function() {
   });
   
   <%= @cost.cost_type == :fuel ? "makeFuelCostForm();" : "makeTechnologyCostForm();" %>
+  
+  // Autocompleters
+  category_autocomplete = new Autocompleter.Local("cost_cost_category_label","cost_categories_autocomplete",<%= raw CostCategory.visible.all.map(&:label).to_json %>);
+  source_autocomplete = new Autocompleter.Local("cost_cost_source_label","cost_sources_autocomplete",<%= raw CostSource.visible.all.map(&:label).to_json %>);
 });
 

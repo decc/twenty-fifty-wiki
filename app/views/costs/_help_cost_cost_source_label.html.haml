@@ -6,5 +6,5 @@
   %p If you are adding a new source to the system, then when you have saved this data point you will be asked to add a bit more bibliographic information to help others find this source.
   %p As a shortcut, you can click on one of these existing sources
   %ul
-    - CostSource.all.each do |cost_source|
+    - CostSource.visible.order(:title).all.each do |cost_source|
       %li= update_field 'cost_cost_source_label', cost_source.label

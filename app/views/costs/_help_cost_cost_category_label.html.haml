@@ -6,5 +6,6 @@
   %p Use this field to put your example into the right generic category.
   %p You can also click on one of the categories below:
   %ul
-    - CostCategory.order(:title).all.each do |cost_category|
+    - CostCategory.order(:title).visible.all.each do |cost_category|
       %li= update_category_to cost_category
+

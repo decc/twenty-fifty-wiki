@@ -1,5 +1,8 @@
 %script= render 'form_javascript.js'
 #centre.cost_form
+  #cost_categories_autocomplete.autocomplete
+  #cost_sources_autocomplete.autocomplete
+  
   = form_for @cost do |f|
     -if @cost.errors.any?
       #error_explanation
@@ -10,10 +13,10 @@
     %table
       %tr
         %td.label= f.label :cost_category_label, "Category"
-        %td.field= f.text_field :cost_category_label
+        %td.field= f.text_field :cost_category_label, :autocomplete => "off"
       %tr
         %td.label= f.label :cost_source_label, "Source"
-        %td.field= f.text_field :cost_source_label
+        %td.field= f.text_field :cost_source_label, :autocomplete => "off"
       %tr
         %td.label= f.label :label, "Label"
         %td.field= f.text_field :label
