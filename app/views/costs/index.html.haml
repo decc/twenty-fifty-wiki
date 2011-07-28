@@ -1,0 +1,5 @@
+%h1 All cost data points
+
+%ul
+  - @costs.order(:title).visible.each do |cost|
+    %li= link_to cost.title, cost
