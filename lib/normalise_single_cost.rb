@@ -23,7 +23,7 @@ class NormaliseSingleCost
   PU = " *(#{POWER_UNIT.keys.join("|")})?"
   PS = " *(#{POWER_SUFFIX.keys.join("|")})?"
   OU = " *(#{OTHER_UNITS.keys.join("|")})?"
-  V = " *(([0-9e.]+)( *- *([0-9e.]+))?)?"
+  V = " *((-?[0-9e.]+)( *- *(-?[0-9e.]+))?)?"
   PER = ' */'
   
   def initialize(original, average_over_peak = nil)

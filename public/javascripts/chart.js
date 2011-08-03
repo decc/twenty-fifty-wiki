@@ -66,8 +66,8 @@ ScatterPlot = function(input) {
       return (w*h);
     }).reverse();
     
-    // Work ou tthe maximum ranges
-    var x_max = 0, y_max = 0, x = 0, y = 0, d = null;
+    // Work ou the maximum ranges
+    var x_max = 0, y_max = 0, y_min = 0, x_min = 0, x = 0, y = 0, d = null;
     for(i=0,l=this.data.length;i<l;i++) {
       d = this.data[i];
       
@@ -75,20 +75,32 @@ ScatterPlot = function(input) {
       if( (x != NaN) && (x > x_max) ) {
         x_max = x;
       }
+      if( (x != NaN) && (x < x_min) ) {
+        x_min = x;
+      }
       if(d.x.length == 2) {
         x = parseFloat(d.x[1]);
         if( (x != NaN) && (x > x_max) ) {
           x_max = x;
-        }        
+        }
+        if( (x != NaN) && (x < x_min) ) {
+          x_min = x;
+        }
       }
       y = parseFloat(d.y[0]);
       if( (y != NaN) && (y > y_max) ) {
         y_max = y;
       }
+      if( (y != NaN) && (y < y_min) ) {
+        y_min = y;
+      }
       if(d.y.length == 2) {
         y = parseFloat(d.y[1]);
         if( (y != NaN) && (y > y_max) ) {
           y_max = y;
+        }
+        if( (y != NaN) && (y < y_min) ) {
+          y_min = y;
         }
       }
     }
@@ -101,10 +113,10 @@ ScatterPlot = function(input) {
       y_max= 10;
     }
       
-    this.minimumDataValueX = input.minX || 0;
+    this.minimumDataValueX = input.minX || x_min;
     this.maximumDataValueX = input.maxX || x_max;
 
-    this.minimumDataValueY = input.minY || 0;
+    this.minimumDataValueY = input.minY || y_min;
     this.maximumDataValueY = input.maxY || y_max;
     
     
