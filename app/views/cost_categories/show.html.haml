@@ -15,7 +15,12 @@
             = link_to "Change chart to show capital costs against operating costs", cost_category_url(@cost_category)
           - else
             = link_to "Change chart to show capital costs against time", cost_category_url(@cost_category,:chart_x => 'valid_in_year')
-      
+        - else
+          - if params[:chart_x] == "valid_for_quantity_of_fuel"
+            = link_to "Change chart to show fuel costs against time", cost_category_url(@cost_category)
+          - else
+            = link_to "Change chart to show fuel costs against limit of fuel at that level", cost_category_url(@cost_category,:chart_x => 'valid_for_quantity_of_fuel')
+            
     
   #righthalf
     #structured_content

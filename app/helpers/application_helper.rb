@@ -88,7 +88,7 @@ module ApplicationHelper
   end
   
   def valid_chart_parameters
-    %w{fuel_cost_normalised operating_cost_normalised capital_cost_normalised valid_in_year_normalised}
+    %w{fuel_cost_normalised operating_cost_normalised capital_cost_normalised valid_in_year_normalised valid_for_quantity_of_fuel_normalised}
   end
   
   def axis_label(parameter)
@@ -96,7 +96,8 @@ module ApplicationHelper
       'operating_cost_normalised' => "Operating cost (excluding fuel) #{@cost_category.default_operating_unit}",
       'capital_cost_normalised' => "Capital cost #{@cost_category.default_capital_unit}",
       'fuel_cost_normalised' => "#{@cost_category.label} cost #{@cost_category.default_fuel_unit}",
-      'valid_in_year_normalised' => "Year"
+      'valid_in_year_normalised' => "Year",
+      'valid_for_quantity_of_fuel_normalised' => "Maximum quantity available #{@cost_category.default_valid_for_quantity_of_fuel_unit}"
     }[parameter].to_json
   end
   
