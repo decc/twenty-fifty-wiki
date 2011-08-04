@@ -40,7 +40,7 @@ class Cost < ActiveRecord::Base
   
   def set_defaults
     if self.cost_category
-      self.content = cost_category.cost_boilerplate
+      self.content ||= cost_category.cost_boilerplate
     end
   end
   
