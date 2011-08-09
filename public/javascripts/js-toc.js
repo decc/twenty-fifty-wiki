@@ -20,7 +20,6 @@
         }
         return _results;
       }).call(this);
-      console.log(this.tocHeadings, this.toc);
       $$(this.target)[0].insert(this.toc.join("\n"));
       return this.tocHeadings;
     };
