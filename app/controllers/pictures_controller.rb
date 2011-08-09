@@ -1,5 +1,21 @@
 class PicturesController < ApplicationController
   include GenericCrudMethods
+
+  def new
+    redirect_to root_url
+  end
+  
+  def edit
+    redirect_to root_url
+  end
+  
+  def create
+    redirect_to root_url
+  end
+  
+  def update
+    redirect_to root_url
+  end
   
   private
   
