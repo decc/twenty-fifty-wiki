@@ -1,6 +1,16 @@
-<p>Welcome to the 2050 Wiki</p>
+<p>Dear <%= @resource.title %></p>
+  
+<p>Welcome to the 2050 Wiki.</p>
 
-<p>Please confirm your account by clicking the link below:</p>
+<p>Please note that:
+<ol>
+<li>Anything that you contribute to the 2050 wiki, including your email address, may be made public.</li>
+<li>Because the 2050 wiki can be edited by anyone, it is unlikely to represent the views of the Department of Energy and Climate Change, any of the people or organisations named on the site, or any of the contributors to the site.</li>
+<li>Because the goal of the 2050 pathway work is to capture and foster debate around the range of views that exist, it is unlikely to ever be the definitive source of the views of the Department of Energy and Climate Change. Those are more likely to be found in the department's published policies, impact assessments and roadmaps.</li>
+<li>Because the 2050 wiki is work in progress it probably contains errors, probably misinterprets other people's work and probably omits essential information. Please help us to make it better, but do not trust anything it says.</li>
+</ol>
+
+<p>Please confirm that you understand and accept these conditions by clicking the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
 
