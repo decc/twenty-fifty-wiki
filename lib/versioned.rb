@@ -20,7 +20,6 @@ module Versioned
   end
   
   def check_for_conflicts
-    p versions.last, @previous_version_id, versions.last.try(:id), @previous_version_id
     if versions.last && @previous_version_id && versions.last.id != @previous_version_id
       ancestor = versions.find(@previous_version_id)
       p self.content, ancestor.content, self.content_was
