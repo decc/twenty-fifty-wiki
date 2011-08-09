@@ -12,8 +12,7 @@ class CostSource < ActiveRecord::Base
   include SignOff
   include Searchable
 
-  has_many :costs
-  
+  has_many :costs, :dependent => :destroy
 
   def create_title_from_label
     self.title =[label,"cost source"].compact.join(" ")

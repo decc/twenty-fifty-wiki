@@ -14,7 +14,7 @@ class CostCategory < ActiveRecord::Base
   
   validates_presence_of :label
   
-  has_many :costs
+  has_many :costs, :dependent => :destroy
   
   def is_a_fuel?
     !default_fuel_unit.blank? && default_capital_unit.blank? && default_operating_unit.blank?
