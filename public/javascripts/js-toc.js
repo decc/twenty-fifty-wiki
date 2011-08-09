@@ -25,7 +25,7 @@
     };
     TableOfContents.prototype.tocForElement = function(e, i) {
       e.id || (e.id = "toc" + i);
-      return "<a href='#" + e.id + "' class='toc" + e.tagName + "'>" + e.textContent + "</a>";
+      return "<a href='#" + e.id + "' class='toc" + e.tagName + "'>" + e.innerHTML.stripTags() + "</a>";
     };
     return TableOfContents;
   })();
