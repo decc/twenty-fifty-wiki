@@ -1,15 +1,21 @@
 %h1 Thank you #{@user.name}
 
-%p Two thinks now need to happen before you can use this wiki:
+%p Please note that:
+%ol
+  %li Anything that you contribute to the 2050 wiki, including your email address, may be made public.
+  %li Because the 2050 wiki can be edited by anyone, it is unlikely to represent the views of the Department of Energy and Climate Change, any of the people or organisations named on the site, or any of the contributors to the site.
+  %li Because the goal of the 2050 pathway work is to capture and foster debate around the range of views that exist, it is unlikely to ever be the definitive source of the views of the Department of Energy and Climate Change. Those are more likely to be found in the department's published policies, impact assessments and roadmaps.
+  %li Because the 2050 wiki is work in progress it probably contains errors, probably misinterprets other people's work and probably omits essential information. Please help us to make it better, but do not trust anything it says.
+  %li Because the 2050 wiki is work in progress it may crash, behave unexpectedly, or be really annoying to use. If that happens, we are sorry. We appreciate the time you are taking to help us. Please just get in touch with me (contact details below) and I will try and figure out something better.
+
+%p Two things now need to happen before you can use this wiki:
 
 %ol
-  %li An email has been sent to #{@user.email}. Please click on the link in that email to activate your account. If the email does not arrive within a few minutes, please #{link_to "request a new email", new_confirmation_path('user') }.
+  %li An email has been sent to #{@user.email}. Please click on the link in that email to activate your account. If the email does not arrive within a few minutes, please check your junk or spam folders. If it isn't there, please #{link_to "request a new email", new_confirmation_path('user') }.
   %li A member of the DECC team will check your credentials and add you to a list of authorised users. This may take a few working days.
 
-- if @page
-  In the mean time, you could read this:
+%p If you have any questions, please contact me at <a href='mailto:tom.counsell@decc.gsi.gov.uk'>tom.counsell@decc.gsi.gov.uk</a> or 0300 068 6817
 
-  %h2= @page.title
-  
-  - cache do
-    = raw(@page.to_html)
+%p Best wishes
+
+%p Tom Counsell
