@@ -322,3 +322,23 @@ div.autocomplete ul li {
   list-style-type:none;
   cursor:pointer;
 }
+
+div#toc a {
+  display: block;
+}
+
+div#toc a {
+  display: block;
+}
+
+div#toc a.tocH2 {
+  
+}
+
+div#toc a.tocH3 {
+  margin-left: 1em;
+}
+
+div#toc a.tocH4 {
+  margin-left: 2em;
+}

@@ -166,7 +166,7 @@ class Cost < ActiveRecord::Base
     end
     headers.each_with_index do |header,i|
       next if header == 'id'
-      next unless cost.csv_headers.include?(header)
+      next unless cost.csv_load_headers.include?(header)
       value = row[i] || ""
       puts "Setting #{header} to #{value.inspect}"        
       cost.send("#{header}=",value)
@@ -176,8 +176,12 @@ class Cost < ActiveRecord::Base
     cost
   end
   
+  def csv_load_headers
+    @csv_load_headers ||= %w{cost_category_label cost_source_label label cost_type fuel capital operating valid_in_year valid_for_quantity_of_fuel size output efficiency life content}
+  end
+  
   def csv_headers
-    @csv_headers ||= %w{id cost_category_label cost_source_label label cost_type fuel capital operating valid_in_year valid_for_quantity_of_fuel size output efficiency life url}
+    @csv_headers ||= %w{id cost_category_label cost_source_label label cost_type fuel capital operating valid_in_year valid_for_quantity_of_fuel size output efficiency life content url}
   end
   
   def csv_dump(headers)

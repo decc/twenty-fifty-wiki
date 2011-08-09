@@ -15,7 +15,12 @@
       = link_to "add a cost", new_cost_url
   
   #seealso
-  
+    
+    #toc
+      %h4 Contents of this page
+      %script{:type => 'text/javascript'}
+        toc = new TableOfContents('#toc','#content',['h2','h3','h4']);
+    
     - unless target.categories.to_a.empty?
       %h4 Related Categories
       %ul#related_pages
