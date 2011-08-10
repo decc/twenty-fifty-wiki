@@ -4,7 +4,7 @@
 %table#comparison
   %tr
     %td
-      %pre#old= @version.previous_version.try(:to_comparable_text)
+      %pre#old= @previous_version.try(:to_comparable_text)
     %td
       %pre#new= @version.to_comparable_text
 

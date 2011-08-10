@@ -126,8 +126,10 @@ textarea#picture_content { width: 100%; height: 200px;}
 
 ul.recentChanges, .azindex ul {  list-style-type: none; padding-left: 0px; margin-left: 0px}
 ul.recentChanges span.time { padding-right: 2em;}
-ul.recentChanges li { padding: 0.25em 0 0.25em 0.25em;}
-ul.recentChanges li.selected { background-color: #ccc; color: white;}
+ul.recentChanges li, p.allChangesScope { padding: 0.25em 0 0.25em 0.25em;}
+p.changeScopeMessage { padding: 0.25em 0 0.25em 0.25em; background-color: #0F0; color: black;}
+ul.recentChanges li.selected { background-color: #0F0; color: black;}
+ul.recentChanges li.comparison { background-color: #FAA; color: black;}
 ul.recentChanges li.selected form { display: inline}
 ul.recentChanges li.selected form div { display: inline}
 ul.recentChanges li.selected input { width: 160px; margin-left: 10px; display: inline;}
