@@ -25,8 +25,10 @@ class VersionsController < ApplicationController
         @previous_version = @previous_version.previous_version while @previous_version.user == User.current
         @message = "Showing all changes since you started editing this page."
       else
-        @previous_version = @versions.reverse.find { |v| v.user == User.current }
-        @message = "Showing all changes since you last edited this page on #{@previous_version.created_at}"
+        @previous_version = @versions.find { |v| v.user == User.current }
+        if @previous_version
+          @message = "Showing all changes since you last edited this page on #{@previous_version.created_at}"
+        end
       end
     end
     unless @previous_version
@@ -34,8 +36,7 @@ class VersionsController < ApplicationController
       @message = "Showing just the changes made in the edit by #{@version.user.try(:name)} at #{@version.created_at}"
     end
     call_for_evidence_time = Time.local(2011,8,10)
-    p call_for_evidence_time
-    @call_for_evidence_version = @versions.reverse.find { |v|  p v.created_at; v.created_at < call_for_evidence_time }
+    @call_for_evidence_version = @versions.reverse.find { |v|  v.created_at < call_for_evidence_time }
     @showing_previous_version = (@previous_version == @version.previous_version)
     respond_with(@versions)
   end
