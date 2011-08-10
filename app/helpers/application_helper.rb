@@ -36,6 +36,7 @@ module ApplicationHelper
   end
   
   def signed_off_message
+    return ""
     return "" unless target.content
     return "" if target.content.empty?
     case target.sign_off_status
