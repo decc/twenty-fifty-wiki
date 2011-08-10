@@ -36,7 +36,7 @@ class VersionsController < ApplicationController
       @message = "Showing just the changes made in the edit by #{@version.user.try(:name)} at #{@version.created_at}"
     end
     call_for_evidence_time = Time.local(2011,8,10)
-    @call_for_evidence_version = @versions.reverse.find { |v|  v.created_at < call_for_evidence_time }
+    @call_for_evidence_version = @versions.find { |v|  v.created_at < call_for_evidence_time }
     @showing_previous_version = (@previous_version == @version.previous_version)
     respond_with(@versions)
   end
