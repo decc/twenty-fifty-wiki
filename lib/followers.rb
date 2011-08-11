@@ -6,20 +6,15 @@ module Followers
      end
    end
    
-   def followed_by_current_user?
-     followers.include?(User.current)
-   end
-   
-  def follow!
-    user = User.current || self
+  def follow!(user)
     return true unless user.is_a?(User)
     return true if followers.include?(user)
     followers << user
     true
   end
    
-   def un_follow!
-     followers.delete(User.current)
+   def un_follow!(user)
+     followers.delete(user)
    end
      
 end

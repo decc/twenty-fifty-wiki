@@ -50,14 +50,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :title, :content, :picture, :previous_version_id
   
-  def User.current=(user)
-    Thread.current[:user] = user
-  end
-  
-  def User.current
-    Thread.current[:user]
-  end
-  
   def name; self.title; end
   
   before_save   :update_sortable_name

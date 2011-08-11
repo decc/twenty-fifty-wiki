@@ -10,7 +10,6 @@ module Versioned
       validate :no_conflicts
 
       # Callbacks
-      before_save :set_user
       after_save  :create_version
     end
   end
@@ -39,13 +38,6 @@ module Versioned
     @previous_version_id = old_id
   end
   
-  def set_user
-    if User.current
-      self.user = User.current
-    end
-    true
-  end
-  
   def title_was_changed
     changed.include?('title')
   end
@@ -56,7 +48,7 @@ module Versioned
 
   def create_version
     return true unless versioned_attributes_have_changed?
-    follow! if self.respond_to?(:follow!)
+    follow!(user) if self.respond_to?(:follow!)
     Version.create_from(self)
     true
   end

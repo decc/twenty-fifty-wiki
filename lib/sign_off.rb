@@ -20,7 +20,7 @@ module SignOff
   end
   
   def sign
-    self.signed_off_by = User.current
+    self.signed_off_by = user
     self.signed_off_at = Time.now
   end
   

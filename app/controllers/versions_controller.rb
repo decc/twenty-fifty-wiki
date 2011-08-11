@@ -20,12 +20,12 @@ class VersionsController < ApplicationController
         end
       end
     else
-      if @version.user == User.current
+      if @version.user == current_user
         @previous_version = @version.previous_version
-        @previous_version = @previous_version.previous_version while @previous_version && @previous_version.user == User.current
+        @previous_version = @previous_version.previous_version while @previous_version && @previous_version.user == current_user
         @message = "Showing all changes since you started editing this page."
       else
-        @previous_version = @versions.find { |v| v.user == User.current }
+        @previous_version = @versions.find { |v| v.user == current_user }
         if @previous_version
           @message = "Showing all changes since you last edited this page on #{@previous_version.created_at}"
         end

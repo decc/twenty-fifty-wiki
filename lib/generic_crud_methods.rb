@@ -26,13 +26,13 @@ module GenericCrudMethods
    
    def follow
      value = model.find(params[:id])
-     value.follow!
+     value.follow!(current_user)
      redirect_to value
    end
    
    def un_follow
      value = model.find(params[:id])
-     value.un_follow!
+     value.un_follow!(current_user)
      redirect_to value
    end
    
@@ -54,18 +54,21 @@ module GenericCrudMethods
 
    def create
      self.resource = value = model.new(params[parameter_name])
+     value.user = current_user
      flash[:notice] = 'Successfully created.' if value.save
      respond_with(value)
    end
 
    def update
      self.resource = value = model.find(params[:id])
+     value.user = current_user
      flash[:notice] = 'Category was successfully updated.' if value.update_attributes(params[parameter_name])
      respond_with(value)
    end
 
    def destroy
      self.resource = value = model.find(params[:id])
+     value.user = current_user
      value.content = "Delete"
      value.save
      respond_with(value)

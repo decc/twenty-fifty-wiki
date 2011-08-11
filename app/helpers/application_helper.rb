@@ -28,7 +28,7 @@ module ApplicationHelper
   end
   
   def follow_link
-    if target.followed_by_current_user?
+    if target.followers.include?(current_user)
       link_to "stop getting emails about this", "/#{target.class.to_s.downcase.pluralize}/#{target.id}/un_follow"
     else
       link_to "get an email if this #{target.class.to_s.downcase} changes", "/#{target.class.to_s.downcase.pluralize}/#{target.id}/follow"
