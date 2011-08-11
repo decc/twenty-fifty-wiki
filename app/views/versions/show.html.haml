@@ -16,7 +16,8 @@
       - for version in versions 
         %li{ :class => version_class(version) }
           %span.time= version.updated_at.to_s(:time)
-          %span.user= link_to version.user.try(:name), version.user
+          - if version.user
+            %span.user= link_to version.user.name, version.user
           - if @showing_previous_version && version == @version 
             - if (@version.target.updated_at - @version.created_at ) > 1
               = button_to "Reset #{@version.target_type.downcase} to this version", revert_version_url(@version)

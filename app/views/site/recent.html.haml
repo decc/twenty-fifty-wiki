@@ -13,7 +13,8 @@
         %li
           %span.time= version.updated_at.to_s(:time)
           = link_to version.try(:title), version.target
-          updated by 
-          = link_to version.user.try(:name), version.user
+          - if version.user
+            updated by 
+            = link_to version.user.name, version.user
         
   %p= older_recent_changes_link

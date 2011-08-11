@@ -20,7 +20,6 @@ module Versioned
   end
   
   def check_for_conflicts
-    p versions.last, @previous_version_id
     if versions.last && @previous_version_id && versions.last.id != @previous_version_id.to_i
       ancestor = versions.find(@previous_version_id)
       d = Diff3.new(self.content,ancestor.content,self.content_was)
@@ -43,8 +42,6 @@ module Versioned
   def set_user
     if User.current
       self.user = User.current
-    elsif self.is_a?(User)
-      self.user = self
     end
     true
   end
@@ -65,6 +62,7 @@ module Versioned
   end
   
   def versioned_attributes_have_changed?
+    p "Changes:", changed, Version.versioned_attributes,  Version.versioned_attributes.any? { |attr| changed.include?(attr.to_s) }
     Version.versioned_attributes.any? { |attr| changed.include?(attr.to_s) }
   end
 end
