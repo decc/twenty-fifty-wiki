@@ -20,9 +20,9 @@ module Versioned
   end
   
   def check_for_conflicts
-    if versions.last && @previous_version_id && versions.last.id != @previous_version_id
+    p versions.last, @previous_version_id
+    if versions.last && @previous_version_id && versions.last.id != @previous_version_id.to_i
       ancestor = versions.find(@previous_version_id)
-      p self.content, ancestor.content, self.content_was
       d = Diff3.new(self.content,ancestor.content,self.content_was)
       self.content = d.merged_text
       @conflicts = d.conflict?
