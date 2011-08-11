@@ -62,7 +62,6 @@ module Versioned
   end
   
   def versioned_attributes_have_changed?
-    p "Changes:", changed, Version.versioned_attributes,  Version.versioned_attributes.any? { |attr| changed.include?(attr.to_s) }
     Version.versioned_attributes.any? { |attr| changed.include?(attr.to_s) }
   end
 end
