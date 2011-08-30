@@ -117,17 +117,40 @@ class Cost < ActiveRecord::Base
   end
   
   include CostConversions
-    
+  
+  def default_capital_unit
+    cost_category.default_capital_unit
+  end
+  
+  def default_operating_unit
+    cost_category.default_operating_unit
+  end
+  
+  def default_fuel_unit
+    cost_category.default_fuel_unit
+  end
+  
   def capital_cost_normalised
-    NormaliseCost.new(capital,output_over_capacity).convert_to(cost_category.default_capital_unit)
+    NormaliseCost.new(capital,output_over_capacity).convert_to(default_capital_unit)
   end
   
   def operating_cost_normalised
-    NormaliseCost.new(operating,output_over_capacity).convert_to(cost_category.default_operating_unit)    
+    NormaliseCost.new(operating,output_over_capacity).convert_to(default_operating_unit)    
   end
   
   def fuel_cost_normalised
-    convert(fuel,cost_category.default_fuel_unit)
+    convert(fuel,default_fuel_unit)
+  end
+  
+  %w{capital_cost_normalised operating_cost_normalised fuel_cost_normalised}.each do |cost_attribute|
+    define_method "#{cost_attribute}_low" do
+      c = send(cost_attribute).first
+      c.respond_to?(:to_f) ?  c.to_f : c
+    end
+    define_method "#{cost_attribute}_high" do
+      c = send(cost_attribute).last
+      c.respond_to?(:to_f) ?  c.to_f : c
+    end
   end
   
   alias :capital_normalised :capital_cost_normalised
@@ -181,7 +204,7 @@ class Cost < ActiveRecord::Base
   end
   
   def csv_headers
-    @csv_headers ||= %w{id cost_category_label cost_source_label label cost_type fuel capital operating valid_in_year valid_for_quantity_of_fuel size output efficiency life content url}
+    @csv_headers ||= %w{id cost_category_label cost_source_label label cost_type fuel capital operating valid_in_year valid_for_quantity_of_fuel size output efficiency life content url fuel_cost_normalised_low fuel_cost_normalised_high default_fuel_unit capital_cost_normalised_low capital_cost_normalised_high default_capital_unit operating_cost_normalised_low operating_cost_normalised_high default_operating_unit}
   end
   
   def csv_dump(headers)
