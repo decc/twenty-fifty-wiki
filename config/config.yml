@@ -2,4 +2,4 @@ common:
   home_page_id: 1
   id_of_page_to_check_emails_against: 2
   email_address_to_send_from: decc-wiki@greenonblack.com
-  email_address_to_send_new_user_notifications_to: tom@counsell.org
+  email_address_to_send_new_user_notifications_to: joseph.downie@decc.gsi.gov.uk
