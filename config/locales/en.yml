@@ -10,7 +10,7 @@ en:
       subject: "A new user has registered on the wiki"
   devise:
     failure:
-      not_on_list_of_permitted_users: "Sorry, you are not on the list of users permitted to use this wiki. Contact <a href='mailto:joseph.downie@decc.gsi.gov.uk@decc.gsi.gov.uk'>joseph.downie@decc.gsi.gov.uk@decc.gsi.gov.uk</a> to fix this."
+      not_on_list_of_permitted_users: "Sorry, you are not on the list of users permitted to use this wiki. Contact <a href='mailto:joseph.downie@decc.gsi.gov.uk'>joseph.downie@decc.gsi.gov.uk@decc.gsi.gov.uk</a> to fix this."
     registrations:
       form:
         email: 'Your email address:'
