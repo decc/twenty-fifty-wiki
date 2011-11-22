@@ -7,6 +7,7 @@
     = javascript_include_tag :all
     = csrf_meta_tag
   %body
+    #disclaimer This is a wiki, which means anyone can edit it. It is therefore not likely to represent the opinions of DECC or any named individual and its content may be wrong.
     #signout= link_to "Sign out", destroy_user_session_url
     #wrapper{:class => "#{controller_name} #{action_name} #{sign_off_status}"}
       = yield
