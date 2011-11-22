@@ -32,7 +32,7 @@ class CostsController < ApplicationController
 
   def update
     self.resource = value = model.find(params[:id])
-    flash[:notice] = 'Category was successfully updated.' if value.update_attributes(params[parameter_name])
+    flash[:notice] = 'Cost was successfully updated.' if value.update_attributes(params[parameter_name])
     if value.new_cost_source_created?
       redirect_to edit_cost_source_url(value.cost_source)
     else
