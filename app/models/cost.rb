@@ -191,11 +191,8 @@ class Cost < ActiveRecord::Base
       next if header == 'id'
       next unless cost.csv_load_headers.include?(header)
       value = row[i] || ""
-      puts "Setting #{header} to #{value.inspect}"        
       cost.send("#{header}=",value)
     end
-    cost.save
-    puts "Saved #{cost.inspect}"
     cost
   end
   

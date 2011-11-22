@@ -47,6 +47,10 @@ class CostsController < ApplicationController
       tsv = params[:tsv].gsub(/class\tCost.*?\r\n/i,"class\tCost\r\n")
       require 'csv'
       @uploaded_costs = CSV.load(tsv,:col_sep => "\t")
+      @uploaded_costs.each do |cost|
+        cost.user = current_user
+        cost.save
+      end
     else
       flash[:error] = "Only cost data can be bulk uploaded"
     end
