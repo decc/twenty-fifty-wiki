@@ -2,7 +2,8 @@ module DeletableExtension
   
   def self.included(base)
     base.instance_eval do
-      scope :visible, where(:deleted => nil)  
+      scope :visible, where(:deleted => nil)
+      default_scope where(:deleted => nil)
       before_save :update_deleted_flag
     end
   end
