@@ -22,6 +22,7 @@ class CostsController < ApplicationController
   
   def create
     self.resource = value = model.new(params[parameter_name])
+    value.user = current_user
     flash[:notice] = 'Successfully created.' if value.save
     if value.new_cost_source_created?
       redirect_to edit_cost_source_url(value.cost_source)
@@ -32,6 +33,7 @@ class CostsController < ApplicationController
 
   def update
     self.resource = value = model.find(params[:id])
+    value.user = current_user
     flash[:notice] = 'Cost was successfully updated.' if value.update_attributes(params[parameter_name])
     if value.new_cost_source_created?
       redirect_to edit_cost_source_url(value.cost_source)
