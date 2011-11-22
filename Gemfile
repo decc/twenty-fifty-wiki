@@ -10,6 +10,7 @@ gem 'sunspot_rails', '1.2.1' # For search
 gem "will_paginate", "~> 3.0.pre2"
 gem 'exception_notification', :require => 'exception_notifier'
 gem "rails-latex", :git => "git://github.com/tamc/rails-latex.git"
+gem "sanitize" # To prevent malicious html
 
 group :development do 
   gem 'sqlite3-ruby', :require => 'sqlite3'

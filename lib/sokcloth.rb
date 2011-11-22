@@ -14,9 +14,11 @@ module Sokcloth
   end
   
   def to_html
+    puts "Updating html"
     return @html if @html
     post_process_ast! 
     @html = ast.visit(SokclothToHtml.new)
+    @html = Sanitize.clean(@html, Sanitize::Config::RELAXED)
   end
   
   def to_latex
