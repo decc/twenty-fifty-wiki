@@ -35,7 +35,7 @@
           %th.valid_for_quantity_of_fuel Fuel limit
 
           %th
-          - @cost_source.costs.group_by(&:cost_category).each do |category,costs|
+          - @cost_source.costs.visible.group_by(&:cost_category).each do |category,costs|
             - for cost in costs
               %tr[cost]
                 %td.label= link_to "#{cost.cost_category.label} #{cost.label}", cost

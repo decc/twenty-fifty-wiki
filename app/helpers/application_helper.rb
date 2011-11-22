@@ -109,7 +109,7 @@ module ApplicationHelper
     label_tail = x_axis_paramater == "valid_in_year_normalised" ? "valid_for_quantity_of_fuel" : "valid_in_year"
     return nil unless valid_chart_parameters.include?(x_axis_paramater) 
     return nil unless valid_chart_parameters.include?(y_axis_parameter)
-    data = @cost_category.costs.map do |c|
+    data = @cost_category.costs.visible.map do |c|
       { 
         'id' => c.id,
         'label' => "#{(c.label.blank? ? c.cost_source.label : c.label)} (#{c.send(label_tail)})",

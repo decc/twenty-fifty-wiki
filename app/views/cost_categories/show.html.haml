@@ -42,7 +42,7 @@
           - else
             %td.capital_cost= @cost_category.default_capital_unit
             %td.operating_cost= @cost_category.default_operating_unit
-        - for cost in @cost_category.costs
+        - for cost in @cost_category.costs.visible
           %tr[cost]
             %td.color &nbsp;
             %td.label= link_to (cost.label.blank? ? cost.cost_source.label : cost.label), cost
