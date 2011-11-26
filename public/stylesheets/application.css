@@ -1,17 +1,17 @@
 /** {margin: 0; padding: 0;}*/
-body {font: 12px 'verdana', serif; color: #333; background: #FFF;}
+body {font: 12px 'verdana', serif; color: #333; background: #FFF;margin: 0; padding: 0}
 h1, h2, h3, h4, h5, h6 { font-family: 'century gothic', sans-serif; font-weight: normal; text-transform: uppercase;}
 h1 {font-size: 2.1em; color: #CA2B51; margin-bottom: 0px;}
 h2 {font-size: 1.6em; }
 h3 {font-size: 1.1em;}
 h4 {font-size: 0.9em; font-weight: bold;}
-#disclaimer {width: 100%; position: absolute; top: 0px; left: 0px}
+#disclaimer {width: 100%; position: absolute; top: 0px; left: 0px; margin: 0px}
 #disclaimer #message {float: left;margin-left: 10px;}
 #disclaimer #signout {float: right;margin-right: 10px;}
 
 img { border:0px}
 #right h4 {margin-bottom: 0px;}
-#wrapper { margin: 0 5em 0 5em;}
+#wrapper { margin: 2em 5em 0 5em; padding: 0;}
 #signoff { margin: 1em 0em 1em 0em; padding: 1px; }
 .signedOff #signoff { background: #afa;}
 .oldSignOff #signoff { background: yellow;}
@@ -88,7 +88,7 @@ img { border:0px}
 }
 
 
-#rightwrapper { padding-top: 1em;}
+#rightwrapper #search_box { padding-top: 20px;}
 #seealso { margin-top: 2em;}
 #seealso li { margin-top: 1em }
 ins { background-color: #0F0; text-decoration: none;}

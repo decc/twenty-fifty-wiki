@@ -1,9 +1,9 @@
 #rightwrapper
-  %h4= t('title')
   #search_box
     = render 'search/form'
 
   %ul#master_links
+    %li= link_to "help", '/pages/100'
     %li= link_to "home page", root_url
     %li= link_to "a-z index", index_url
     %li= link_to "recent changes", recent_changes_url
