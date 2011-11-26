@@ -5,7 +5,10 @@ h1 {font-size: 2.1em; color: #CA2B51; margin-bottom: 0px;}
 h2 {font-size: 1.6em; }
 h3 {font-size: 1.1em;}
 h4 {font-size: 0.9em; font-weight: bold;}
-#signout {position: absolute; top: 0px; right: 0.5em;}
+#disclaimer {width: 100%; position: absolute; top: 0px; left: 0px}
+#disclaimer #message {float: left;margin-left: 10px;}
+#disclaimer #signout {float: right;margin-right: 10px;}
+
 img { border:0px}
 #right h4 {margin-bottom: 0px;}
 #wrapper { margin: 0 5em 0 5em;}
