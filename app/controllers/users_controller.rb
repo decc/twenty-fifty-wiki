@@ -5,7 +5,25 @@ class UsersController < ApplicationController
     @page = Page.find_by_title 'Introduction for new users'
     @user = User.find(params[:id])
   end
+
+  def activate
+    if current_user.administrator?
+      @user = User.find(params[:id])
+      @user.activated = true
+      @user.save
+    end
+    redirect_to @user
+  end
   
+  def disable
+    if current_user.administrator?
+      @user = User.find(params[:id])
+      @user.activated = false
+      @user.save
+    end
+    redirect_to @user
+  end
+
   private
   
   def title

@@ -10,14 +10,14 @@ en:
       subject: "A new user has registered on the wiki"
   devise:
     failure:
-      not_on_list_of_permitted_users: "Sorry, you are not on the list of users permitted to use this wiki. Contact <a href='mailto:joseph.downie@decc.gsi.gov.uk'>joseph.downie@decc.gsi.gov.uk@decc.gsi.gov.uk</a> to fix this."
+      not_on_list_of_permitted_users: "Sorry, your account has not yet been activated by DECC staff. If it is more than a couple of working days since you registered, please contact <a href='mailto:2050pathways@decc.gsi.gov.uk'>2050pathways@decc.gsi.gov.uk</a>."
     registrations:
       form:
         email: 'Your email address:'
         password: "A new 6+ letter password"
         password_confirmation: 'The same password, again:'
         content: 'A few words about who you are:'
-        instructions: "When you click 'sign up' below, you will be sent an email. Please click on the link in that email to confirm that you are who you say you are. There may then be a delay before you can actually use the wiki, while we check your credentials."
+        instructions: "When you click 'sign up' below, you will be sent an email. Please click on the link in that email to confirm that you are who you say you are. There may then be a delay before you can actually use the wiki, while we activate your account."
     sessions:
       new:
         title: "Have you used the 2050 Wiki before?"

@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   include SignOff
   include Searchable
   
+  attr_protected :administrator, :activated
+
   has_many :pages
   has_many :edits, :class_name => 'Version'
   
@@ -104,20 +106,11 @@ class User < ActiveRecord::Base
   def redirects_to_page; false; end
   
   def active_for_authentication?
-    super && is_on_the_list_of_permitted_users?
+    super && activated?
   end
   
   def inactive_message
-    is_on_the_list_of_permitted_users? ? super : :not_on_list_of_permitted_users
-  end
-  
-  def is_on_the_list_of_permitted_users?
-    return true unless AppConfig.id_of_page_to_check_emails_against
-    return false unless @page = Page.find(AppConfig.id_of_page_to_check_emails_against)
-    valid_emails = @page.content.split.map do |email|
-      email =~ /^[#*]+(.*?)$/ ? $1.strip.downcase : email.strip.downcase
-    end
-    valid_emails.include?(email.strip.downcase)
+    activated? ? super : :not_on_list_of_permitted_users
   end
   
   def tell_administrator_about_new_user

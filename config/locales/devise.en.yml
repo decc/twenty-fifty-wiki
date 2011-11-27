@@ -22,7 +22,7 @@ en:
       updated: 'Your password was changed successfully. You are now signed in.'
     confirmations:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
-      confirmed: 'Your account was successfully confirmed. However, your login will not work until you have been added to the list of permitted users.'
+      confirmed: 'Your account was successfully confirmed. However, your login will not work until you have been added to the list of permitted users. This may take a working day.'
     registrations:
       signed_up: 'You have signed up successfully. A confirmation was sent to your e-mail. Please click on the link in that email in order to log in for the first time.'
       updated: 'You updated your account successfully.'

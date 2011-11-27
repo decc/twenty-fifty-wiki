@@ -13,7 +13,19 @@
     #user_picture= link_to image_tag(@user.picture.url(:thumb)), @user.picture.url
   
   #content
-    %p= mail_to @user.email
+    %p
+      = mail_to @user.email
+      - unless @user.confirmed_at? 
+        (this email address has not been confirmed)
+    - unless @user.activated?
+      %p
+        This user has not been activated by an administrator.
+
+    - if current_user.administrator?
+      - if @user.activated?
+        = button_to "Disable this account", :action => 'disable'
+      - else
+        = button_to "Activate this account", :action => 'activate'
     - cache do 
       = raw(@user.to_html)
 

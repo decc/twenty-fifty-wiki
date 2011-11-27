@@ -75,6 +75,8 @@ Soks::Application.routes.draw do
       get 'changes'
       get 'follow'
       get 'un_follow'
+      post 'activate'
+      post 'disable'
     end
   end
 
