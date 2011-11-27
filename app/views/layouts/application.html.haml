@@ -18,6 +18,11 @@
         = link_to 'DECC', 'http://www.decc.gov.uk'
         does not 
         = link_to 'vouch for its accuracy.', '/pages/102'
-      #signout= link_to "Sign out", destroy_user_session_url
+      #signout
+        - if user_signed_in?
+          = link_to current_user.title, current_user
+          = link_to "(Sign out)", destroy_user_session_url
+        - else
+          = link_to "Register or sign in", new_user_session_url
     #wrapper{:class => "#{controller_name} #{action_name} #{sign_off_status}"}
       = yield
