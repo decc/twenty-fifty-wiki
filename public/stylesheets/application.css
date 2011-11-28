@@ -158,7 +158,7 @@ div.user .image { float: right; padding: 0em 0 1em 1em }
 div.user h2, div.user h3 { padding-top: 0; margin-top: 0 }
 .matrix_login { display: none }
 
-.signup, .signin { width: 40%; border: 1px #000 solid; padding: 1em; margin-top: 3%; height: 440px }
+.signup, .signin { width: 40%; border: 1px #000 solid; padding: 1em; margin-top: 3%; height: 480px }
 .signin { float: right }
 h1.login {text-align: center; width: 100%}
 .signup input[type="text"], .signin input[type="text"], .signup input[type="password"], .signin input[type="password"] { width: 98% }

@@ -17,7 +17,7 @@ en:
         password: "A new 6+ letter password"
         password_confirmation: 'The same password, again:'
         content: 'A few words about who you are:'
-        instructions: "When you click 'sign up' below, you will be sent an email. Please click on the link in that email to confirm that you are who you say you are. There may then be a delay before you can actually use the wiki, while we activate your account."
+        instructions: "When you click 'sign up' below, you will be sent an email. Please click on the link in that email to confirm that you are who you say you are. There may then be a delay before you can actually use the wiki, while we activate your account. Please note that your email address and any edits that you make will be made public."
     sessions:
       new:
         title: "Have you used the 2050 Wiki before?"
