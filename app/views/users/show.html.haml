@@ -14,18 +14,19 @@
   
   #content
     %p
-      = mail_to @user.email
-      - unless @user.confirmed_at? 
-        (this email address has not been confirmed)
-    - unless @user.activated?
-      %p
-        This user has not been activated by an administrator.
-
-    - if current_user.administrator?
-      - if @user.activated?
-        = button_to "Disable this account", :action => 'disable'
+      - if user_signed_in?
+        = mail_to @user.email, nil, :encode => 'javascript'
+        - unless @user.confirmed_at? 
+          (this email address has not been confirmed)
+        - unless @user.activated?
+          This user has not been activated by an administrator.
+        - if current_user.administrator?
+          - if @user.activated?
+            = button_to "Disable this account", :action => 'disable'
+          - else
+            = button_to "Activate this account", :action => 'activate'
       - else
-        = button_to "Activate this account", :action => 'activate'
+        Must be registered and signed in to see this user's email address
     - cache do 
       = raw(@user.to_html)
 
