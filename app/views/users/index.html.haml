@@ -3,7 +3,10 @@
   = render 'site/sub_indexes'
   
   #content
-    - cache do
-      = picture_link_list @users
+    - if current_user.administrator?
+      - cache do
+        = picture_link_list @users
+    - else
+      %p Only visible to administrators
       
 #right= render 'pages/right_bar'

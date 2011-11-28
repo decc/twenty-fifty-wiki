@@ -5,7 +5,8 @@ class SiteController < ApplicationController
   
   def index
     @title = "Index of all things on this wiki"
-    respond_with(@titles = Title.order(:title).all)
+    @titles = Title.order(:title).where("target_type <> 'User'").all # Ever so slightly harder to create a bulk email list
+    respond_with(@titles)
   end
   
   def home
