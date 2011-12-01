@@ -3,7 +3,7 @@
   = render 'site/sub_indexes'
   
   #content
-    - if current_user.administrator?
+    - if current_user && current_user.administrator?
       - cache do
         = picture_link_list @users
     - else
