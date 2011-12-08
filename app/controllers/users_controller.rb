@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @user.activated = true
       @user.save
+      ChangeNotifications.account_activated(@user).deliver
     end
     redirect_to @user
   end

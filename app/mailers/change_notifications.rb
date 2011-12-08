@@ -20,4 +20,9 @@ class ChangeNotifications < ActionMailer::Base
     @user = user
     mail :to => AppConfig.email_address_to_send_new_user_notifications_to
   end
+
+  def account_activated(user)
+    @user = user
+    mail :to => @user.email
+  end
 end
