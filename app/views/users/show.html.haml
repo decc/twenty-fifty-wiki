@@ -27,8 +27,11 @@
             = button_to "Activate this account", :action => 'activate'
       - else
         Must be registered and signed in to see this user's email address
-    - cache do 
-      = raw(@user.to_html)
+
+  - if @user.activated? || (user_signed_in? && current_user.administrator?)
+    = raw(@user.to_html)
+  - else
+    %p User details will not be visible until this account has been activated
 
   %h2 Recent edits by this user
 
