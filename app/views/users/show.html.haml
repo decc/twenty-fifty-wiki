@@ -30,12 +30,6 @@
     - cache do 
       = raw(@user.to_html)
 
-  / - unless @user.signed_off_all_types.empty?
-  %h2 Pages that this user has signed off
-  
-  = link_list @user.signed_off_all_types
-
-
   %h2 Recent edits by this user
 
   %ul.recentChanges
