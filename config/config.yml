@@ -1,5 +1,5 @@
 common:
   home_page_id: 1
   email_address_to_send_from: 2050pathways@decc.gsi.gov.uk
-  email_address_to_send_new_user_notifications_to: [2050pathways@decc.gsi.gov.uk,tom@counsell.org,jan.kiso@decc.gsi.gov.uk]
+  email_address_to_send_new_user_notifications_to: [tom.bain@decc.gsi.gov.uk,tom@counsell.org]
   email_address_to_send_admin_messages_from: decc.wiki@gmail.com
