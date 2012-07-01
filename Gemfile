@@ -1,26 +1,27 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.3'
+gem 'rails',  '3.2.0'
+gem 'prototype-rails'
+gem 'sass-rails', '~> 3.2.3'
+gem 'coffee-rails', '~> 3.2.1'
+gem 'uglifier', '>= 1.0.3'
 gem 'thin'
 gem "haml" # For html templates
 gem "haml-rails" # For haml generators to work
 gem "devise" # For user management
 gem 'paperclip' # For file attachments
-gem "delayed_job" # For updating associated pages
-gem 'sunspot_rails', '1.2.1' # For search
-gem "will_paginate", "~> 3.0.pre2"
+gem "delayed_job_active_record" # For updating associated pages
+gem 'sunspot_rails'
+gem "will_paginate"
 gem 'exception_notification', :require => 'exception_notifier'
 gem "rails-latex", :git => "git://github.com/tamc/rails-latex.git"
 gem "sanitize" # To prevent malicious html
 gem "foreman"
 gem "recaptcha", :require => "recaptcha/rails"
 
-group :development do 
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-end
+gem "pg" # required by postgresql
 
-group :production do
-  gem "pg" # required by postgresql
-  gem "mysql2", "~> 0.2.7"
+group :development do
+  gem 'sunspot_solr'
 end
 
 group :testing do
@@ -32,7 +33,7 @@ group :testing do
   gem 'rspec-rails'
   gem 'spork'
   gem 'launchy'   # so we can use : Then show me the page
-  gem 'machinist', '>= 2.0.0.beta1'
+  gem 'machinist'
   gem 'faker'
   gem 'nokogiri'
   gem 'email_spec'

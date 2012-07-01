@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   
-  auto_complete_for :page, :title
+  # auto_complete_for :page, :title
   
   respond_to :html, :xml, :json, :text
   

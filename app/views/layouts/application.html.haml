@@ -4,7 +4,7 @@
     %title= @title || target.try(:title) || 'The 2050 Costs Wiki'
     = stylesheet_link_tag "application", :media => 'all'
     = stylesheet_link_tag "print", :media => 'print'
-    = javascript_include_tag :all
+    = javascript_include_tag 'application'
     = csrf_meta_tag
   %body
     #disclaimer 
