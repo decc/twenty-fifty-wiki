@@ -8,7 +8,6 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.8.1)
     actionmailer (3.2.0)
       actionpack (= 3.2.0)
       mail (~> 2.4.0)
@@ -38,8 +37,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.8)
     arel (3.0.2)
-    autotest (4.4.6)
-      ZenTest (>= 4.4.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     capybara (1.1.2)
@@ -220,7 +217,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autotest
   capybara
   coffee-rails (~> 3.2.1)
   cucumber

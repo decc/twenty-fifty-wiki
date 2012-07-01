@@ -25,7 +25,6 @@ group :development do
 end
 
 group :testing do
-  gem 'autotest'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
