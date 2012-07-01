@@ -11,6 +11,8 @@ gem "will_paginate", "~> 3.0.pre2"
 gem 'exception_notification', :require => 'exception_notifier'
 gem "rails-latex", :git => "git://github.com/tamc/rails-latex.git"
 gem "sanitize" # To prevent malicious html
+gem "foreman"
+gem "recaptcha", :require => "recaptcha/rails"
 
 group :development do 
   gem 'sqlite3-ruby', :require => 'sqlite3'

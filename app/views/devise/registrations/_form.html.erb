@@ -14,6 +14,9 @@
   
   <p><%= f.label :content, 'A few words about who you are:' %><%= link_to "(Why do we ask?)", page_url(116) %><br />
   <%= f.text_area :content %></p>
+  
+  <p>We've had a lot of spam registrations. To reduce this, please type in the words displayed below:</p>
+  <%= recaptcha_tags %>
 
   <p>
   When you click 'sign up' below, you will be sent an email. Please click on the link in that email to confirm that you are who you say you are. There may then be a delay before you can actually use the wiki, while we activate your account. Please note that your email address and any edits that you make will be made public.
