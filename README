@@ -27,6 +27,11 @@ May need to adjust the config.action_mailer settings in config/environments/prod
 Optionally, to enable notification of changed pages, add this to a crontab:
 'ChangeNotifications.send_all_change_notifications'
 
+To make the registration captcha work, need to register with http://www.google.com/recaptcha then set two environment variables: 
+    
+    export RECAPTCHA_PUBLIC_KEY  = '6Lc6BAAAAAAAAChqRbQZcn_yyyyyyyyyyyyyyyyy'
+    export RECAPTCHA_PRIVATE_KEY = '6Lc6BAAAAAAAAKN3DRm6VA_xxxxxxxxxxxxxxxxx'
+
 To start (from inside the app directory):
   foreman start --env config/development.env # or --env config/production.env
 
