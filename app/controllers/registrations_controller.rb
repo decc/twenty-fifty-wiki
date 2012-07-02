@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
       resource.valid?
       resource.errors.add(:base, "There was an error with the recaptcha code below. Please re-enter the code.")
       clean_up_passwords(resource)
-      respond_with_navigational(resource) { render_with_scope :new }
+      render 'devise/sessions/new'
     else
       flash.delete :recaptcha_error
       super
