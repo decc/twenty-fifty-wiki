@@ -11,7 +11,7 @@ class Version < ActiveRecord::Base
   has_attached_file :picture
   
   def self.versioned_attributes
-    @versioned_attributes ||= %w{title content user_id is_picture picture signed_off_by_id signed_off_at cost_category_id cost_source_id valid_for_quantity_of_fuel valid_in_year efficiency life size fuel operating capital default_fuel_unit default_operating_unit default_capital_unit label output}.map(&:to_sym)
+    @versioned_attributes ||= %w{title content user_id is_picture signed_off_by_id signed_off_at cost_category_id cost_source_id valid_for_quantity_of_fuel valid_in_year efficiency life size fuel operating capital default_fuel_unit default_operating_unit default_capital_unit label output}.map(&:to_sym)
   end
   
   def Version.create_from(target)
@@ -19,6 +19,10 @@ class Version < ActiveRecord::Base
     Version.versioned_attributes.each do |attribute|
       next unless target.respond_to?(attribute)
       v.send "#{attribute}=", target.send(attribute)
+    end
+    # Need to manually assign the picture attribute, due to a paperclip bug
+    if target.respond_to?(:picture) && target.picture.present?
+      v.picture = target.picture
     end
     v.save
     v
