@@ -4,7 +4,7 @@ module AutolinkTitle
     base.instance_eval do
       # The title
       has_one :autolink_title, :as => :target, :class_name => 'Title', :dependent => :destroy
-      validates_length_of :title, :minimum => 3      
+      validates_length_of :title, :minimum => 3, :maximum => 255
       validates_uniqueness_of :title, :case_sensitive => false
       
       # Forward and back links
