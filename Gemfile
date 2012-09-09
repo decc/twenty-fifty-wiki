@@ -8,6 +8,7 @@ gem 'thin'
 gem "haml" # For html templates
 gem "haml-rails" # For haml generators to work
 gem "devise" # For user management
+gem "aws-sdk" # To use amazon S3 as a file store
 gem 'paperclip' # For file attachments
 gem "delayed_job_active_record" # For updating associated pages
 gem 'sunspot_rails'

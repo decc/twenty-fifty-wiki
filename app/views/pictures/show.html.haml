@@ -1,7 +1,8 @@
 #centre
   %h1= @picture.title
   %ul#actions
-    %li= link_to 'improve this picture', edit_picture_url(@picture), :accesskey => "e"
+    - if administrator?
+      %li= link_to 'improve this picture', edit_picture_url(@picture), :accesskey => "e"
     %li= link_to 'see who edited this picture', changes_picture_url(@picture)
     %li= follow_link
 

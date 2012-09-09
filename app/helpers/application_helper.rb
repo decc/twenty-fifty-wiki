@@ -1,6 +1,10 @@
 # encoding: utf-8
 module ApplicationHelper
 
+  def administrator?
+    current_user && current_user.administrator?
+  end
+
   def present_cost(cost)
     return cost unless cost.respond_to?(:map)
     cost.map{ |c| c.to_f.round() }.join('–')

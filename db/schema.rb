@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127193936) do
+ActiveRecord::Schema.define(:version => 20120909193823) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -200,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20111127193936) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "",    :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "email",                                                  :null => false
+    t.string   "encrypted_password",   :limit => 128,                    :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -272,6 +273,8 @@ ActiveRecord::Schema.define(:version => 20111127193936) do
     t.integer  "cost_source_id"
     t.integer  "cost_category_id"
     t.string   "output"
+    t.integer  "medium_picture_width"
+    t.integer  "medium_picture_height"
   end
 
   add_index "versions", ["created_at"], :name => "index_versions_on_created_at"

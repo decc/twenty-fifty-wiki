@@ -1,5 +1,8 @@
 class PicturesController < ApplicationController
+  before_filter :must_be_administrator, :only => [:new, :edit, :create, :update]
+
   include GenericCrudMethods
+
 
  # def new
  #   redirect_to root_url

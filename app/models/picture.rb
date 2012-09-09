@@ -1,4 +1,8 @@
 class Picture < ActiveRecord::Base
+
+  has_attached_file :picture
+  before_save :update_picture_dimensions
+
   include PreProcessContent
   include DeletableExtension  
   include AutolinkTitle
@@ -12,13 +16,11 @@ class Picture < ActiveRecord::Base
   # Validations
   validates_uniqueness_of :title, :case_sensitive => false
   
-  has_attached_file :picture
-  before_save :update_picture_dimensions
   
   def update_picture_dimensions
     return true if deleted?
-    return true unless picture && picture.to_file
-    geometry = Paperclip::Geometry.from_file(picture.to_file(:medium))
+    return true unless picture && picture.queued_for_write[:medium]
+    geometry = Paperclip::Geometry.from_file(picture.queued_for_write[:medium].path)
     self.medium_picture_width = geometry.width
     self.medium_picture_height = geometry.height
     true # continue

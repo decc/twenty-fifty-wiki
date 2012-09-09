@@ -9,10 +9,10 @@
     %li= link_to "recent changes", recent_changes_url
     
   %ul#newpages
-    %li
-      = link_to "add a page", new_page_url
-    %li
-      = link_to "add a cost", new_cost_url
+    %li= link_to "add a page", new_page_url
+    - if administrator?
+      %li= link_to "add a picture", new_picture_url
+    %li= link_to "add a cost", new_cost_url
   
   #seealso
     
