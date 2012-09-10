@@ -8,3 +8,5 @@ tmp/
 _darcs/
 solr/
 *.swp
+public/uploads
+public/system
