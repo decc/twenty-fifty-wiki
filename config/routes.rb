@@ -1,5 +1,13 @@
 Soks::Application.routes.draw do
   
+  resources :uploaded_files do
+    member do 
+      get 'changes'
+      get 'follow'
+      get 'un_follow'
+    end
+  end
+
   resources :cost_categories do
     resources :costs
     member do 

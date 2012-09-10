@@ -33,9 +33,9 @@ module ApplicationHelper
   
   def follow_link
     if target.followers.include?(current_user)
-      link_to "stop getting emails about this", "/#{target.class.to_s.downcase.pluralize}/#{target.id}/un_follow"
+      link_to "stop getting emails about this", "/#{target.class.to_s.tableize}/#{target.id}/un_follow"
     else
-      link_to "get an email if this #{target.class.to_s.downcase} changes", "/#{target.class.to_s.downcase.pluralize}/#{target.id}/follow"
+      link_to "get an email if this #{target.class.to_s.tableize.humanize.singularize.downcase} changes", "/#{target.class.to_s.tableize}/#{target.id}/follow"
     end
   end
   
@@ -59,7 +59,7 @@ module ApplicationHelper
   end
   
   def target
-    @page || @picture || @user || @category || @cost || @cost_category || @cost_source || Page.find(1)
+    @page || @picture || @user || @category || @cost || @cost_category || @cost_source || @uploaded_file || Page.find(1)
   end
   
   def link_list(array)

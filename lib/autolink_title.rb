@@ -11,7 +11,7 @@ module AutolinkTitle
       has_many :links_to, :as => :from, :class_name => 'Link', :dependent => :destroy
       has_many :linked_to_from, :as => :to, :class_name => 'Link', :dependent => :destroy
 
-      %w{pages pictures categories users costs cost_sources cost_categories}.each do |type|
+      %w{pages pictures categories users costs cost_sources cost_categories uploaded_files}.each do |type|
         has_many "links_to_#{type}", :through => :links_to, :source => :to, :source_type => type.classify
         has_many "linked_to_from_#{type}", :through => :linked_to_from, :source => :from, :source_type => type.classify
       end
@@ -36,7 +36,7 @@ module AutolinkTitle
   end
   
   def linked_to_from_all
-    linked_to_from_pages + linked_to_from_pictures + linked_to_from_categories + linked_to_from_users
+    linked_to_from_pages + linked_to_from_pictures + linked_to_from_categories + linked_to_from_users + linked_to_from_costs + linked_to_from_cost_sources + linked_to_from_cost_categories + linked_to_from_uploaded_files
   end
   
   # This is used in the autolinking

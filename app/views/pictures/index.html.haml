@@ -1,6 +1,10 @@
-%h1 A-Z index of pictures on this site
-= render 'site/master_links'
-= render 'site/sub_indexes'
+#centre
+  %h1 A-Z index of pictures on this site
+  = render 'site/master_links'
+  = render 'site/sub_indexes'
 
-- cache do
-  = picture_link_list @pictures
+  #content
+    - cache do
+      = picture_link_list @pictures
+
+#right= render 'pages/right_bar'

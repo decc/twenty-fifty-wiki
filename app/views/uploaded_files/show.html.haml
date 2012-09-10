@@ -1,0 +1,26 @@
+#centre
+  %h1= @uploaded_file.title
+  %ul#actions
+    - if administrator?
+      %li= link_to 'change this file', edit_uploaded_file_url(@uploaded_file), :accesskey => "e"
+    %li= link_to 'see who edited this page', changes_uploaded_file_url(@uploaded_file)
+    %li= follow_link
+
+  = signed_off_message      
+  = redirect_message
+  = similar_pages_message
+  
+  %h2 File:
+  #file
+    = link_to "#{@uploaded_file.attachment_file_name} (click to download)", @uploaded_file.attachment.url
+
+  %p 
+    This file appears to be of type #{@uploaded_file.attachment_content_type} and to be #{number_to_human_size @uploaded_file.attachment_file_size}.
+    
+  
+  %h2 Details:
+  #content
+    - cache do 
+      = raw(@uploaded_file.to_html)
+
+#right= render 'pages/right_bar'

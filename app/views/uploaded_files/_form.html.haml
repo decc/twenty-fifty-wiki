@@ -1,0 +1,36 @@
+#centre
+  = form_for(@uploaded_file, :html => { :multipart => true } ) do |f|
+    - if @uploaded_file.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@uploaded_file.errors.count, "error")
+          prohibited this page from being saved:
+        %ul
+          - @uploaded_file.errors.full_messages.each do |msg|
+            %li= msg
+    .field
+      = f.label :title
+      %br/
+      = f.text_field :title
+    .field
+      = f.label :attachment, "File:"
+      %br/
+      - unless @uploaded_file.attachment_file_name.nil?
+        Existing file:
+        = link_to "#{@uploaded_file.attachment_file_name}", @uploaded_file.attachment.url
+        %br/
+        New file:
+      = f.file_field :attachment
+    .field
+      = f.label :content, 'Caption'
+      %br/
+      = f.text_area :content
+    //.field
+    //  = f.check_box :signed_off_toggle    
+    //  = f.label :signed_off_toggle, "Tick if you have checked this content and are willing to sign it off as correct"
+    .actions
+      = f.hidden_field :previous_version_id
+      = f.submit
+      or #{link_to 'Cancel', @uploaded_file}
+
+#right= render 'pages/help_bar'

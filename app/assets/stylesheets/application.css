@@ -123,9 +123,9 @@ a:hover { text-decoration: underline; }
 .figure .caption .further_detail { padding-left: 1em;}
 .image {display: inline;}
 
-input#page_title, input#picture_title, input#category_title, input#user_title { width: 100%; font-size: 2.1em; color: #CA2B51;}
+input#page_title, input#picture_title, input#uploaded_file_title, input#category_title, input#user_title { width: 100%; font-size: 2.1em; color: #CA2B51;}
 textarea#page_content, textarea#category_content, textarea#user_content  { width: 100%; height: 500px;}
-textarea#picture_content { width: 100%; height: 200px;}
+textarea#picture_content, textarea#uploaded_file_content { width: 100%; height: 200px;}
 
 ul.recentChanges, .azindex ul {  list-style-type: none; padding-left: 0px; margin-left: 0px}
 ul.recentChanges span.time { padding-right: 2em;}

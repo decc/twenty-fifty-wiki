@@ -9,9 +9,10 @@ class Version < ActiveRecord::Base
   scope :recent, order('updated_at DESC').limit(50).includes(:target,:user)
   
   has_attached_file :picture
+  has_attached_file :attachment, :styles => {}, :convert_options => nil
   
   def self.versioned_attributes
-    @versioned_attributes ||= %w{title content user_id is_picture picture medium_picture_width medium_picture_height picture_updated_at signed_off_by_id signed_off_at cost_category_id cost_source_id valid_for_quantity_of_fuel valid_in_year efficiency life size fuel operating capital default_fuel_unit default_operating_unit default_capital_unit label output}.map(&:to_sym)
+    @versioned_attributes ||= %w{title content user_id picture medium_picture_width medium_picture_height picture_updated_at signed_off_by_id signed_off_at cost_category_id cost_source_id valid_for_quantity_of_fuel valid_in_year efficiency life size fuel operating capital default_fuel_unit default_operating_unit default_capital_unit label output attachment_file_name attachment}.map(&:to_sym)
   end
   
   def Version.create_from(target)
@@ -23,6 +24,9 @@ class Version < ActiveRecord::Base
     # Need to manually assign the picture attribute, due to a paperclip bug
     if target.respond_to?(:picture) && target.picture.present?
       v.picture = target.picture
+    end
+    if target.respond_to?(:attachment) && target.attachment.present?
+      v.attachment = target.attachment
     end
     v.save
     v

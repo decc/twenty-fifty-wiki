@@ -1,6 +1,6 @@
 #changeindex
   %h1 #{@version.target.title}
-  = link_to "Return to the #{@version.target_type.humanize}", @version.target
+  = link_to "Return to the #{@version.target_type.tableize.humanize.singularize.downcase}.", @version.target
 
   %p= page_newer_changes_link
   

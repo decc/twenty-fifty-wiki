@@ -1,5 +1,10 @@
-- unless @version.picture.url.empty?
+- unless @version.picture_file_name.nil?
+  Picture:
   = image_tag @version.picture.url(:medium)
+- unless @version.attachment_file_name.nil?
+  Attached file:
+  = link_to "#{@version.attachment_file_name}", @version.attachment.url
+  
 
 %table#comparison
   %tr

@@ -51,7 +51,7 @@ class VersionsController < ApplicationController
     else
       flash[:error] = "Could not revert to the earlier version."
       # FIXME: Must be a more elegant way of doing this
-      @page = @user = @picture = @target
+      @page = @user = @picture = @uploaded_file = @target
       render "#{@version.target_type.downcase.pluralize}/edit"
     end
   end

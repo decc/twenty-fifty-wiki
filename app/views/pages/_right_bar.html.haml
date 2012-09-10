@@ -12,6 +12,7 @@
     %li= link_to "add a page", new_page_url
     - if administrator?
       %li= link_to "add a picture", new_picture_url
+      %li= link_to "add a file", new_uploaded_file_url
     %li= link_to "add a cost", new_cost_url
   
   #seealso
@@ -28,7 +29,7 @@
           %li= link_to category.title, category
           
     - unless target.linked_to_from_all.empty?
-      %h4 Related Pages, Pictures and Users
+      %h4 Related pages
       %ul#related_pages
         - target.linked_to_from_all.each do |linked|
           %li= link_to linked.title, linked

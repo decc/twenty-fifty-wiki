@@ -1,0 +1,10 @@
+#centre
+  %h1 A-Z index of files on this site
+  = render 'site/sub_indexes'
+  
+  #content
+    - cache do 
+      = link_list @uploaded_files
+
+#right= render 'pages/right_bar'
+

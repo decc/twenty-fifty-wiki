@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  content: MyText
+  user_id: 1
+  boolean: 
+  signed_off_by: 1
+  signed_off_at: 2012-09-10 06:29:13
+  attachment_file_name: MyString
+  attachment_content_type: MyString
+  attachment_file_size: 1
+  attachment_updated_at: 2012-09-10 06:29:13
+
+two:
+  title: MyString
+  content: MyText
+  user_id: 1
+  boolean: 
+  signed_off_by: 1
+  signed_off_at: 2012-09-10 06:29:13
+  attachment_file_name: MyString
+  attachment_content_type: MyString
+  attachment_file_size: 1
+  attachment_updated_at: 2012-09-10 06:29:13

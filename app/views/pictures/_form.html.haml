@@ -15,17 +15,19 @@
     .field
       = f.label :picture
       %br/
-      - unless @picture.picture.url.empty?
+      - unless @picture.picture_file_name.nil?
+        Current picture:
         = image_tag @picture.picture.url(:medium)
-      %br/
+        %br/
+        New picture:
       = f.file_field :picture
     .field
       = f.label :content, 'Caption'
       %br/
       = f.text_area :content
     .field
-      = f.check_box :signed_off_toggle    
-      = f.label :signed_off_toggle, "Tick if you have checked this content and are willing to sign it off as correct"      
+      //= f.check_box :signed_off_toggle    
+      //= f.label :signed_off_toggle, "Tick if you have checked this content and are willing to sign it off as correct"      
     .actions
       = f.hidden_field :previous_version_id
       = f.submit
