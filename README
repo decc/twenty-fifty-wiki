@@ -24,6 +24,12 @@ Setup (from inside the app directory):
 
 May need to adjust the config.action_mailer settings in config/environments/production.rb
 
+If updating from earlier version, may need to run:
+
+  ./script/rails generate delayed_job:upgrade
+  bundle exec rake db:migrate RAILS_ENV=development
+  bundle exec rake db:migrate RAILS_ENV=production
+
 Optionally, to enable notification of changed pages, add this to a crontab:
 'ChangeNotifications.send_all_change_notifications'
 
@@ -32,8 +38,29 @@ To make the registration captcha work, need to register with http://www.google.c
     export RECAPTCHA_PUBLIC_KEY  = '6Lc6BAAAAAAAAChqRbQZcn_yyyyyyyyyyyyyyyyy'
     export RECAPTCHA_PRIVATE_KEY = '6Lc6BAAAAAAAAKN3DRm6VA_xxxxxxxxxxxxxxxxx'
 
+These environment variables could also be placed in the config/development.env or config/production.env files if needed.
+
 To start (from inside the app directory):
   foreman start --env config/development.env # or --env config/production.env
+
+Then go to http://0.0.0.0:5100
+
+Then register a new email address.
+
+Then you will need to manually make this first account an administrator:
+    
+  ./script/rails console development # or ./script/rails console production
+  u = User.find_by_email 'the email address you used for registration'
+  u.activated = true
+  u.administrator = true
+  u.save
+  exit
+
+You can then use that account to log onto the wiki and create your first page.
+
+Because the account is an administrator, you can use it to activate later accounts that are registered.
+
+To make other users administrators, follow the steps above for the first account.
 
 RUNNING ON HEROKU
 
