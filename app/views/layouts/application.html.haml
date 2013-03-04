@@ -7,22 +7,26 @@
     = javascript_include_tag 'application'
     = csrf_meta_tag
   %body
-    #disclaimer 
-      #message
-        This is a 
-        = link_to 'wiki', '/pages/99'
-        for the 
-        = link_to '2050 pathways calculator.',  'http://www.decc.gov.uk/2050'
-        = link_to 'Anyone can contribute,', '/pages/101'
-        therefore 
-        = link_to 'DECC', 'http://www.decc.gov.uk'
-        does not 
-        = link_to 'vouch for its accuracy.', '/pages/102'
+    #twentyfiftybanner
+      = link_to 'The UK 2050 Calculator', 'http://www.gov.uk/2050-pathways-analysis', class: 'current'
+      = link_to 'Web', 'http://2050-calculator-tool.decc.gov.uk'
+      = link_to 'Flash', 'http://my2050.decc.gov.uk/'
+      = link_to 'Excel', 'http://2050-calculator-tool-wiki.decc.gov.uk/pages/140'
+      = link_to 'Wiki', 'http://2050-calculator-tool-wiki.decc.gov.uk/', :class => 'current'
       #signout
         - if user_signed_in?
           = link_to current_user.title, current_user
           = link_to "(Sign out)", destroy_user_session_url
         - else
           = link_to "Register or sign in", new_user_session_url
+    #disclaimer 
+      #message
+        This is a 
+        = link_to 'wiki', '/pages/99'
+        = link_to 'Anyone can contribute,', '/pages/101'
+        therefore 
+        = link_to 'we', 'https://www.gov.uk/government/organisations/department-of-energy-climate-change'
+        don't 
+        = link_to 'vouch for its accuracy.', '/pages/102'
     #wrapper{:class => "#{controller_name} #{action_name} #{sign_off_status}"}
       = yield

@@ -5,9 +5,12 @@ h1 {font-size: 2.1em; color: #CA2B51; margin-bottom: 0px;}
 h2 {font-size: 1.6em; }
 h3 {font-size: 1.1em;}
 h4 {font-size: 0.9em; font-weight: bold;}
-#disclaimer {width: 100%; position: absolute; top: 0px; left: 0px; margin: 0px}
-#disclaimer #message {float: left;margin-left: 10px;}
-#disclaimer #signout {float: right;margin-right: 10px;}
+#twentyfiftybanner { width: 100%; position: absolute; top: 0px; left: 0px; margin: 0px; background-color: #000; color: #fff; padding-left: 10px;}
+#twentyfiftybanner a { margin-right: 10px; color: #ccc }
+#twentyfiftybanner a.current { color: #fff }
+#disclaimer {position: absolute; top: 15px; left: 5em; margin: 0px; background-color: #ee0}
+#disclaimer #message {float: left;}
+#twentyfiftybanner #signout {float: right;margin-right: 10px;}
 
 img { border:0px}
 #right h4 {margin-bottom: 0px;}
