@@ -19,10 +19,9 @@ gem "sanitize" # To prevent malicious html
 gem "foreman"
 gem "recaptcha", :require => "recaptcha/rails"
 
-# gem "pg" # required by postgresql
+gem "pg" # required by postgresql
 
 group :development do
-  gem 'sqlite3'
   gem 'sunspot_solr'
 end
 
