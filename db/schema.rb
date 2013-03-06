@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227153850) do
+ActiveRecord::Schema.define(:version => 20120910190700) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "deleted"
     t.integer  "signed_off_by_id"
     t.datetime "signed_off_at"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.integer  "dependency_id"
     t.string   "target_type"
     t.integer  "target_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "dependency"
   end
 
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "default_capital_unit"
     t.string   "default_operating_unit"
     t.string   "default_fuel_unit"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "cost_boilerplate"
     t.string   "default_valid_for_quantity_of_fuel_unit"
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.integer  "signed_off_by_id"
     t.datetime "signed_off_at"
     t.string   "label"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "costs", :force => true do |t|
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "valid_for_quantity_of_fuel"
     t.integer  "cost_source_id"
     t.integer  "cost_category_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "output"
   end
 
@@ -95,9 +95,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -106,15 +105,15 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.integer  "user_id"
     t.string   "target_type"
     t.integer  "target_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "links", :force => true do |t|
     t.integer  "from_id"
     t.integer  "to_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "to_type"
     t.string   "from_type"
   end
@@ -130,8 +129,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "deleted"
     t.integer  "signed_off_by_id"
     t.datetime "signed_off_at"
@@ -145,8 +144,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "medium_picture_width"
     t.integer  "medium_picture_height"
     t.boolean  "deleted"
@@ -168,8 +167,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
 
   create_table "technologies", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "technology_cost_points", :force => true do |t|
@@ -178,8 +177,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "capital_cost"
     t.string   "operating_cost"
     t.integer  "technology_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "technology_illustrations", :force => true do |t|
@@ -188,8 +187,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "capital_size"
     t.string   "operating_size"
     t.integer  "technology_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "titles", :force => true do |t|
@@ -197,8 +196,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.integer  "length"
     t.string   "target_type"
     t.integer  "target_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "uploaded_files", :force => true do |t|
@@ -217,12 +216,12 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                                                  :null => false
+    t.string   "encrypted_password",   :limit => 128,                    :null => false
     t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                       :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -230,12 +229,11 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        :default => 0
+    t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
     t.string   "sortable_name"
     t.text     "content"
@@ -247,8 +245,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.boolean  "deleted"
     t.integer  "signed_off_by_id"
     t.datetime "signed_off_at"
-    t.boolean  "activated",              :default => false
-    t.boolean  "administrator",          :default => false
+    t.boolean  "activated",                           :default => false
+    t.boolean  "administrator",                       :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -269,8 +267,8 @@ ActiveRecord::Schema.define(:version => 20130227153850) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "target_type"
     t.integer  "previous_version_id"
     t.integer  "signed_off_by_id"
