@@ -18,6 +18,7 @@ describe NormaliseCost do
     NormaliseCost.new("£m(2009)/6TWh").normalise.map(&:to_f).should == [4.764611060185185e-09] 
     NormaliseCost.new("$(2000)100/toe").normalise.map(&:to_f).should == [1.8870582967899112e-07] 
     NormaliseCost.new("£M(2010) 1/GWp").normalise.map(&:to_f).should == [3.168808781402895e-09]
+    NormaliseCost.new("$(2010)15.378/MBTU").normalise.map(&:to_f).should == [8.891545023696683e-07]
   end
   
   it "should deal with numbers that contain commas" do
