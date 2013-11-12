@@ -1,0 +1,5 @@
+---
+application.js: application.js
+application/index.js: application.js
+application.css: application.css
+application/index.css: application.css
