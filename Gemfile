@@ -27,7 +27,7 @@ group :development do
   gem 'sunspot_solr'
 end
 
-group :testing do
+group :test do
   gem 'sqlite3'
   gem 'database_cleaner'
   gem 'cucumber-rails'
