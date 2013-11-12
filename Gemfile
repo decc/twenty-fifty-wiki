@@ -13,7 +13,7 @@ gem 'paperclip' # For file attachments
 gem "delayed_job_active_record" # For updating associated pages
 gem 'sunspot_rails'
 gem "will_paginate"
-gem 'exception_notification', :require => 'exception_notifier'
+gem 'exception_notification'
 gem "rails-latex", :git => "git://github.com/tamc/rails-latex.git"
 gem "sanitize" # To prevent malicious html
 gem "foreman"
@@ -26,6 +26,7 @@ group :development do
 end
 
 group :testing do
+  gem 'sqlite3'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'

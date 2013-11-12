@@ -9,4 +9,4 @@ _darcs/
 solr/
 *.swp
 public/uploads
-public/system
+public/system.powenv
