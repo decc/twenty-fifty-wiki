@@ -191,13 +191,12 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
-    sunspot (2.1.0)
+    sunspot (1.3.3)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
-    sunspot_rails (2.1.0)
+    sunspot_rails (1.3.3)
       nokogiri
-      rails (>= 3)
-      sunspot (= 2.1.0)
+      sunspot (= 1.3.3)
     sunspot_solr (2.1.0)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -253,7 +252,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   spork
   sqlite3
-  sunspot_rails
+  sunspot_rails (~> 1.3.0)
   sunspot_solr
   thin
   uglifier (>= 1.0.3)

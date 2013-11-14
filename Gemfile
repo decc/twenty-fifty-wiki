@@ -13,7 +13,7 @@ gem "devise" # For user management
 gem "aws-sdk" # To use amazon S3 as a file store
 gem 'paperclip' # For file attachments
 gem "delayed_job_active_record" # For updating associated pages
-gem 'sunspot_rails'
+gem 'sunspot_rails', '~> 1.3.0'
 gem "will_paginate"
 gem 'exception_notification'
 gem "rails-latex", :git => "git://github.com/tamc/rails-latex.git"
