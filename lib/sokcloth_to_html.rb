@@ -139,7 +139,11 @@ class SokclothToHtml
   
   def url(*contents)
     url = visit(contents)
-    "<a href='#{(url =~ /^http/) ? url : "http://#{url}" }'>#{url}</a>"
+    text = url
+    if text =~ %r{2050-calculator-tool\.decc\.gov\.uk/pathways/([^/]+)}
+      text = "Pathway #{$1[0..2]}&hellip;#{$1[-3..-1]}"
+    end
+    "<a href='#{(url =~ /^http/) ? url : "http://#{url}" }'>#{text}</a>"
   end
   
   def email(*contents)
