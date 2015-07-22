@@ -36,15 +36,26 @@ Soks::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.default_url_options = { :host => "2050-calculator-tool-wiki.decc.gov.uk" }
+  #config.action_mailer.delivery_method = :smtp
+  #ActionMailer::Base.smtp_settings = {
+  #  :address        => "smtp.sendgrid.net",
+  #  :port           => "25",
+  #  :authentication => :plain,
+  #  :user_name      => ENV['SENDGRID_USERNAME'],
+  #  :password       => ENV['SENDGRID_PASSWORD'],
+  #  :domain         => ENV['SENDGRID_DOMAIN']
+  #}
+  
   config.action_mailer.default_url_options = { :host => "2050-calculator-tool-wiki.decc.gov.uk" }
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address        => "smtp.sendgrid.net",
+    :address        => "smtp.mailgun.org",
     :port           => "25",
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => ENV['SENDGRID_DOMAIN']
+    :user_name      => 'postmaster@mg.2050.org.uk',
+    :password       => ENV['WIKI_EMAIL_PASSWORD'],
+    :domain         => '2050.org.uk'
   }
 
   # Enable threaded mode
