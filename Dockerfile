@@ -29,6 +29,9 @@ RUN rm -f /etc/service/nginx/down
 # Add the nginx configuration for the server which will be on port 8080
 ADD nginx.conf /etc/nginx/sites-enabled/2050.conf
 
+# This preserves environment variables through to the server
+ADD env_to_preserve.conf /etc/nginx/main.d/wiki-env.conf
+
 # Add the source code in this directory to the docker image
 ADD . /home/app/2050
 
