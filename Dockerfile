@@ -36,7 +36,7 @@ ADD . /home/app/2050
 WORKDIR /home/app/2050
 RUN bundle
 
-RUN bundle exec rake assets:precompile 
+#RUN bundle exec rake assets:precompile 
 
 # Now need to build this image
 # e.g., docker build .
