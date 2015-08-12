@@ -17,4 +17,4 @@ USER root
 RUN chown solr:solr /opt/solr/server/solr/default/conf/solrconfig.xml
 RUN chown solr:solr /opt/solr/server/solr/default/conf/schema.xml
 
-USER tomcat
+USER solr
